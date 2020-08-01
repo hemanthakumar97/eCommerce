@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'css/user.css' %}">
     {% comment %} <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> {% endcomment %}
     <title>{% block title %}{% endblock %}</title>
-    <style>{% block styles %}{% endblock %}</style>
+    {% block styles %}<style></style>{% endblock %}
 </head>
 <body>
     <nav>
