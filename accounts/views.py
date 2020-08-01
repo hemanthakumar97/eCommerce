@@ -44,7 +44,7 @@ def signup(request):
         email = EmailMultiAlternatives(mail_subject, message, to=[to_email])
         email.attach_alternative(message, "text/html")
         email.send()
-        messages.success(request, 'Registered succesfully')
+        messages.success(request, 'Verify your email and login')
         return render(request, 'accounts/login.html')
     return render(request, 'accounts/signup.html')
 
