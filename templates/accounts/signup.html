@@ -1,0 +1,33 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Signup{% endblock %}
+
+{% block styles %}
+    .mid-box span::before{
+        content: "Already have an account? ";
+    }
+
+     
+{% endblock  %}
+
+{% block content %}
+<div class="mid-box">
+    {% include 'partials/_alerts.html' %}
+    <form class="signup" method='POST' style="height: 60%; padding-bottom:385px;"><br>
+        {% csrf_token %}
+        <h1 align='center'>Create Account</h1>
+        <p>Your Name</p>
+        <input type="text" placeholder="Full Name" name='full_name' required><br>
+        <p>Mobile Number</p>
+        <input type="text" placeholder="Mobile Number" name='mobile'><br>
+        <p>Email</p>
+        <input type="text" placeholder="Email id" name='email'><br>
+        <p>Password</p>
+        <input type="password" placeholder="Password" name='password' required><br>
+        <button align='center'>SignUp</button>
+    </form>
+    <div class="gap"><br></div>
+        <div class='devider'>
+            <span><a href="{% url 'accounts:login' %}">Login</a></span>
+        </div>
+    </div>
+{% endblock %}

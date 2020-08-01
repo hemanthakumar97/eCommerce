@@ -1,0 +1,32 @@
+{% extends "accounts/base.html" %}
+{% block title %}
+  Login
+{% endblock %}
+{% block styles %}
+.mid-box span::before{
+    content: "Already have an account? ";
+}  
+{% endblock %}        
+
+{% block content %}
+    <div class="mid-box" >
+    {% include 'partials/_alerts.html' %}
+        <form class="signup" method='POST' action="{% url 'accounts:login' %}"><br>
+          {% csrf_token %}
+            <h1 align='center'>Login</h1>
+            <p>Email or Mobile Number</p>
+            <input type="text" placeholder="Email or Mobile Number" required name='username'><br>
+            <p>Password</p>
+            <input type="password" placeholder="Password" required name='password'><br>
+            <input type="submit" value='Login'>
+        </form>
+        <div class='devider'>
+            <br><span><a href="{% url 'accounts:signup' %}">SignUp</a></span>
+        </div><br>
+        <div class='forgotp' style="line-height: 20px; margin-bottom:0;">
+            <span><a href="{% url 'accounts:forgot_password' %}"><br> Forgot Password</a></span>
+        </div><br>
+        <p style="font-size: 12px;">By login, you agree to HKTECH SHOP's Conditions of Use and Privacy Notice.</p>
+    </div>
+
+{% endblock %}

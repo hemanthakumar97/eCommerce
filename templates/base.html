@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+    <div class="search-box">
+        <form action="index.html">
+            <input type="text" placeholder="Search">
+            <!-- <button><i class="fa fa-search"></i></button> -->
+        </form>
+    </div>
+
+    <nav>
+        <input type="checkbox" id='check'>
+        <label for="check">
+            <i class="fa fa-bars" id='menu'></i>
+        </label>
+        <a href="{% url 'products:index' %}"><label class='logo'>HKTECH SHOP</label></a>
+        <a class='cart' href="cart.html"><i class="fa fa-shopping-cart"></i></a>
+        <ul>
+            <div class="dropdown">
+                {% if user.is_authenticated %}
+                <button class="dropbtn">Hello, {{user.first_name}} <i class="fa fa-caret-down"></i></button>
+                {% endif %}
+                <div class="dropdown-content">
+                  <a href="my_account.html">My Profile</a>
+                  <a href="my_orders.html">My Orders</a>
+                  <a href="#">Coupons</a>
+                  <a href="wishlist.html">Whishlist</a>
+                  <a href="#">Notifications</a>
+                  <a href="{% url 'accounts:logout' %}">Logout</a>
+                </div>
+              </div> 
+              <div class='user_ac'>
+
+
+                <label for="check">
+                    <i class="fa fa-times" id='menu'></i>
+                </label>
+        
+                <br>
+                {% if user.is_authenticated %}
+                <li><a href="my_account.html">Hello, {{user.first_name}}</a></li>
+                <li><a href="my_orders.html">My Orders</a></li>
+                <li><a href="#">Coupons</a></li>
+                <li><a href="wishlist.html">Wishlist</a></li>
+                <li><a href="#">Notifications</a></li>
+                <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+                {% endif %}
+              </div>
+              {% if not user.is_authenticated %}
+              <li><a href="{% url 'accounts:signup' %}">Signup</a></li>
+              <li><a href="{% url 'accounts:login' %}">Login</a></li>
+              {% endif %}
+              <li><a class='cart1' href="cart.html"><i class="fa fa-shopping-cart"></i> cart</a></li>  
+        </ul>
+    </nav><div class="bel_nav"><h1></h1></div>
+
+        <div class="category" align='center'>
+            <div class="cat_web">
+                <ul>
+                    <li><a href="#">Laptops</a></li>
+                    <li><a href="#">Mobiles</a></li>
+                    <li><a href="#">Sensors</a></li>
+                    <li><a href="#">Electronic Components</a></li>
+               </ul>
+            </div>
+            <div class="cat_mobile">
+                <button class="dropbtn">Categories <i class="fa fa-caret-down"></i></button>
+                <div class="dropdown-content">
+                  <a href="#">Laptops</a>
+                  <a href="#">Mobiles</a>
+                  <a href="#">Sensors</a>
+                  <a href="#">Electronic Components</a>
+                </div>
+            </div>
+        </div>
+        
+        {% block content %}
+          
+        {% endblock %}
+    <div class="footer">
+        <a href="#">About us</a> 
+        <a href="#">Condition of Use and Sale</a> 
+        <a href="#">Privacy Notice</a><br>
+        <a href="#">Facebook</a> 
+        <a href="#">Twitter</a> 
+        <a href="#">Instagram</a> 
+        <p>&copy;2020 HKTECH SHOP</p>
+    </div>
+</body>

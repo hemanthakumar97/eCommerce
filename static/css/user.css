@@ -1,0 +1,154 @@
+*{
+    padding: 0; 
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+nav{
+    background: black;
+    height: 60px;
+    width: 100%;
+}
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert{
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+label.logo{
+    color: white;
+    font-size: 30px;
+    padding-left: 100px;
+    line-height: 60px;
+    font-family: 'Segoe UI';
+    font-weight: bold;
+}
+
+form>h3{
+    margin-bottom: 10px;
+}
+
+.mid-box, .personal_info{
+    background: white;
+    height: minmax(80%,auto);
+    width: 420px;
+    /* max-width: 350px;
+    max-width: 400px; */
+    margin: 30px 0;
+    padding: 20px 20px;
+    padding-bottom: 35px;
+    font-family: Arial,sans-serif;
+    filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.4));
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+form input[type=text], form input[type=email], 
+form input[type=password],textarea, .addr, .add{
+    padding: 7px 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+    border: 1px solid black;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+form input[type=radio]{
+margin-right: 100px;
+}
+
+form input:focus, form textarea:focus{
+    outline: none;
+    box-shadow: 0 0 5px #07CB79;
+    border: 2px solid #07CB79;
+}
+
+form>h1{
+    padding-bottom: 20px;
+    font-weight: normal;
+}
+
+form input[type=submit], .buttons input, button{
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 10px 30px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    border: 2px solid #07CB79;
+    background: black;
+    outline: none;
+    box-shadow: 0 0 5px black;
+}
+
+form button:hover, .buttons input:hover{
+    background: #07CB79;
+    border: 2px solid black;
+    box-shadow: 0 0 5px black;
+}
+
+/* footer */
+.footer{
+    text-align: center;
+    background: black;
+    padding: 10px 100px;
+    color: white;
+    font-weight: normal;
+
+}
+.footer a{
+    text-decoration: none;
+    padding: 10px 30px;
+    color: white;
+    line-height: 35px;
+}
+.footer p{
+    line-height: 20px;
+    font-size: 13px;
+}
+
+@media (max-width: 500px){
+    .mid-box{
+        zoom: 85%;
+        height: 500px;
+    }
+
+    .footer{
+        padding: 10px 5px;
+        line-height: 10px;
+    }
+    
+    .footer a{
+        font-size: 12px;
+        padding: 10px 5px;
+        line-height: 20px;
+    }
+
+    .footer p{
+        line-height: 30px;
+    }
+}
+
+@media (max-width: 360px){
+    .mid-box{
+        zoom: 75%;
+    }
+}
