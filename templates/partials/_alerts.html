@@ -1,3 +1,28 @@
+{% load static %}
+<style>
+    .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+    
+    .alert-success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+    }
+    
+    .alert{
+        position: relative;
+        padding: .75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: .25rem;
+    }
+    
+</style>
+
+
 {% if messages %}
 {% for message in  messages %}
 <div id="message" class="alert alert-{{ message.tags }} close" role="alert">
@@ -7,8 +32,11 @@
             {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
                 Success: 
             {% endif %}
-        </strong>
+            </strong>
             {{ message }}
 </div>
 {% endfor %}
 {% endif %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="{% static 'js/main.js' %}"></script>

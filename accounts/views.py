@@ -59,7 +59,8 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        messages.success(request, 'Email Verified successfully')
+        return render(request, 'accounts/login.html')
     else:
         return HttpResponse('Activation link is invalid!')
 
@@ -74,6 +75,7 @@ def login(request):
         user = auth.authenticate(username=email, password=password)
         if user is not None:
             auth.login(request,user)
+            messages.success(request,'Loged in successfully')
             return redirect('products:index')
         else:
             messages.error(request,' Invalid username or password')
@@ -83,6 +85,7 @@ def login(request):
 
 def logout(request):
         auth.logout(request)
+        messages.success(request,'Loged out successfully')
         return redirect('products:index')
 
 def forgot_password(request):

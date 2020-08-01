@@ -10,25 +10,6 @@ nav{
     height: 60px;
     width: 100%;
 }
-.alert-danger {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-}
-
-.alert-success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-}
-
-.alert{
-    position: relative;
-    padding: .75rem 1.25rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius: .25rem;
-}
 
 label.logo{
     color: white;
