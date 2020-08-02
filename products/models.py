@@ -19,7 +19,32 @@ class Category(models.Model):
         return self.category
 
 class Mobile(models.Model):
-    pass
+    title = models.CharField(max_length=255, blank=True, null=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
+    os = models.CharField(max_length=255, default="Android", blank=True, null=True)
+    rom = models.CharField(max_length=5, blank=True, null=True)
+    ram = models.CharField(max_length=5, blank=True, null=True)
+    processor = models.CharField(max_length=50, blank=True, null=True)
+    battery = models.CharField(max_length=50, blank=True, null=True)
+    rating = models.IntegerField(blank=True, null=True)
+    color = models.CharField(max_length=255, blank=True, null=True)
+    item_dim = models.CharField(max_length=255, blank=True, null=True)
+    item_weight = models.CharField(max_length=255, blank=True, null=True)
+    item_model_no = models.CharField(max_length=255, blank=True, null=True)
+    wireless_com_tech = models.CharField(max_length=255, blank=True, null=True)
+    connectivity_tech = models.CharField(max_length=255, blank=True, null=True)
+    speacial_features = models.CharField(max_length=255, default="Included")
+    display_tech = models.CharField(max_length=255, blank=True, null=True)
+    camera = models.CharField(max_length=255, blank=True, null=True)
+    form_factor = models.CharField(max_length=255, blank=True, null=True)
+    color = models.CharField(max_length=255, blank=True, null=True)
+    battery_rating = models.CharField(max_length=255, blank=True, null=True)
+    whats_in_box = models.CharField(max_length=255, blank=True, null=True)
+    warrenty = models.CharField(max_length=255, default="1 Year", blank=True, null=True)
+    
+    def __str__(self):
+        return self.title
+
 
 class Laptop(models.Model):
     title = models.CharField(max_length=255, blank=True, null=True)
@@ -75,6 +100,9 @@ class Product(models.Model):
     image_3 = models.ImageField(upload_to='producs/', blank=True, null=True)
     image_4 = models.ImageField(upload_to='producs/', blank=True, null=True)
     image_5 = models.ImageField(upload_to='producs/', blank=True, null=True)
+    image_6 = models.ImageField(upload_to='producs/', blank=True, null=True)
+    image_7 = models.ImageField(upload_to='producs/', blank=True, null=True)
+    image_8 = models.ImageField(upload_to='producs/', blank=True, null=True)
     mrp = models.IntegerField()
     deal_price = models.IntegerField()
     rating = models.IntegerField()

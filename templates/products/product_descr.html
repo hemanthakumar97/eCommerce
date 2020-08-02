@@ -34,7 +34,7 @@ h1{
 }
 .fetures{ 
     display: grid;
-    grid-template-columns: 60% 35%;
+    grid-template-columns: 60% 40%;
     position: relative;
 }
 ul li{
@@ -77,14 +77,15 @@ tr:hover{
     position: relative;
     grid-column-gap: 50px;
 }
-.pro_banner{
-    width: 90%;
+.pro_banner img{
+    width: 100%;
 }
 .pro_photos img{
     width: 100%;
     /* margin: 20px; */
     margin: 0;
-    margin-top: -50px;
+    <!-- margin-top: -50px; -->
+    margin-top: 0px;
     margin-left: 80px;
     max-width: 450px;
     max-height: 400px;
@@ -109,8 +110,9 @@ tr:hover{
     padding: 1rem 0;
     list-style-type: none;
     position: absolute;
-    bottom: 0;
-    right: 50%;
+    bottom: -30px;
+    left: 50%;
+    transform: translate(-50%,0)
 }
 
 .slick-dots li{
@@ -121,7 +123,6 @@ tr:hover{
     display: block;
     width: 0.7rem;
     height: 0.7rem;
-    margin-top: -2rem;
     padding: 0;
     border: none;
     background-color: #E2E2E2;
@@ -183,10 +184,16 @@ tr:hover{
     }
     .fetures{
         display: block;
-        margin: 0;
+        zoom: 90%;
     }
 
-    table{
+    <!-- .fetures{
+        display: block;
+        margin-left: -15px;
+        margin-right:40px;
+    } -->
+    .fetures table{
+        table-layout: fixed;
         width: 95%;
     }
     .slick-dots{
@@ -215,11 +222,20 @@ tr:hover{
             {% if product.image_5 %}
             <img src="{{product.image_5.url}}" alt="">
             {% endif %}
+            {% if product.image_6 %}
+            <img src="{{product.image_6.url}}" alt="">
+            {% endif %}
+            {% if product.image_7 %}
+            <img src="{{product.image_7.url}}" alt="">
+            {% endif %}
+            {% if product.image_8 %}
+            <img src="{{product.image_8.url}}" alt="">
+            {% endif %}
         </div>
 
     </div>
     <div class="pro_info"><br>
-        <h1>{{product.title}} ({{product.laptop.description}})</h1>
+        <h1>{{product.title}} ({{product.laptop.description}}{{product.mobile.description}})</h1>
         {% for i in rating %}
         <span class="fa fa-star checked"></span>
         {% endfor %}
@@ -246,7 +262,7 @@ tr:hover{
                 <li>{{product.feature_5}}</li>
                 <li>{{product.feature_6}}</li>
             </ul>
-        </div>
+        </div><br>
         <div class="buttons" align='center'>
             <button>Add to Cart</button>
             <button>Buy Now</button>
@@ -254,165 +270,268 @@ tr:hover{
     </div>
 </div>
 <div class="pro_banner">
-    <!-- <img src="{{product.image_3.url}}" alt=""> -->
+    {% if product.pro_banner_1 %}
+    <img src="{{product.pro_banner_1.url}}" alt="">
+    {% endif %}
+    {% if product.pro_banner_2 %}
+    <img src="{{product.pro_banner_2.url}}" alt="">
+    {% endif %}
+    {% if product.pro_banner_3 %}
+    <img src="{{product.pro_banner_3.url}}" alt="">
+    {% endif %}
+    {% if product.pro_banner_4 %}
+    <img src="{{product.pro_banner_4.url}}" alt="">
+    {% endif %}
+    {% if product.pro_banner_5 %}
+    <img src="{{product.pro_banner_5.url}}" alt="">
+    {% endif %}
+    {% if product.pro_banner_6 %}
+    <img src="{{product.pro_banner_6.url}}" alt="">
+    {% endif %}
+    {% if product.pro_banner_7 %}
+    <img src="{{product.pro_banner_7.url}}" alt="">
+    {% endif %}
+    {% if product.pro_banner_8 %}
+    <img src="{{product.pro_banner_8.url}}" alt="">
+    {% endif %}
 </div>
 
+<br>
 <div class="tech_details">
     <h3 id='tag'>{{product.title}} {{product.category}} Information</h3>
 <p style="display: inline;">Style name: </p><p style="display: inline;"><b></b></p><p style="display: inline;">  |  Colour: </p><p style="display: inline;"><b>Coral Green</b></p>
-<div class="fetures">
+<div class="fetures" id='feature'>
     <div>
         <h3 style="line-height:50px;">Technical Details</h3>
+
         <table align="center">
-        <tr>
-            <th>Brand</th>
-            <td>{{product.laptop.brand}}</td>
-        </tr>
-        <tr>
-            <th>Series</th>
-            <td>{{product.laptop.series}}</td>
-        </tr>
-        <tr>
-            <th>Color</th>
-            <td>{{product.laptop.color}}</td>
-        </tr>
-        <tr>
-            <th>Item height</th>
-            <td>{{product.laptop.item_height}}</td>
-        </tr>
-        <tr>
-            <th>Item width</th>
-            <td>{{product.laptop.item_width}}</td>
-        </tr>
-        <tr>
-            <th>Item weight</th>
-            <td>{{product.laptop.item_weight}}</td>
-        </tr>
-        <tr>
-            <th>Screen Size</th>
-            <td>{{product.laptop.screen_size}}</td>
-        </tr>
-        <tr>
-            <th>Max display Resolution</th>
-            <td>{{product.laptop.maximum_display_res}}</td>
-        </tr>
-        <tr>
-            <th>Product Dimension</th>
-            <td>{{product.laptop.product_dimension}}</td>
-        </tr>
-        <tr>
-            <th>Batteries</th>
-            <td>{{product.laptop.batteries}}</td>
-        </tr>
-        <tr>
-            <th>Item Model Number</th>
-            <td>{{product.laptop.item_model_no}}</td>
-        </tr>
-        <tr>
-            <th>Processor Brand</th>
-            <td>{{product.laptop.processor_brand}}</td>
-        </tr>
-        <tr>
-            <th>Processor Type</th>
-            <td>{{product.laptop.processor_type}}</td>
-        </tr>
-        <tr>
-            <th>RAM Technology</th>
-            <td>{{product.laptop.memory_technology}}</td>
-        </tr>
-        <tr>
-            <th>RAM Size</th>
-            <td>{{product.laptop.ram_size}}</td>
-        </tr>
-        {% if product.laptop.hdd_technology %}
-        <tr>
-            <th>HDD Technology</th>
-            <td>{{product.laptop.hdd_technology}}</td>
-        </tr>
+            {% if product.laptop %}
+            <tr>
+                <th>Brand</th>
+                <td>{{product.laptop.brand}}</td>
+            </tr>
+            <tr>
+                <th>Series</th>
+                <td>{{product.laptop.series}}</td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>{{product.laptop.color}}</td>
+            </tr>
+            <tr>
+                <th>Item height</th>
+                <td>{{product.laptop.item_height}}</td>
+            </tr>
+            <tr>
+                <th>Item width</th>
+                <td>{{product.laptop.item_width}}</td>
+            </tr>
+            <tr>
+                <th>Item weight</th>
+                <td>{{product.laptop.item_weight}}</td>
+            </tr>
+            <tr>
+                <th>Screen Size</th>
+                <td>{{product.laptop.screen_size}}</td>
+            </tr>
+            <tr>
+                <th>Max display Resolution</th>
+                <td>{{product.laptop.maximum_display_res}}</td>
+            </tr>
+            <tr>
+                <th>Product Dimension</th>
+                <td>{{product.laptop.product_dimension}}</td>
+            </tr>
+            <tr>
+                <th>Batteries</th>
+                <td>{{product.laptop.batteries}}</td>
+            </tr>
+            <tr>
+                <th>Item Model Number</th>
+                <td>{{product.laptop.item_model_no}}</td>
+            </tr>
+            <tr>
+                <th>Processor Brand</th>
+                <td>{{product.laptop.processor_brand}}</td>
+            </tr>
+            <tr>
+                <th>Processor Type</th>
+                <td>{{product.laptop.processor_type}}</td>
+            </tr>
+            <tr>
+                <th>RAM Technology</th>
+                <td>{{product.laptop.memory_technology}}</td>
+            </tr>
+            <tr>
+                <th>RAM Size</th>
+                <td>{{product.laptop.ram_size}}</td>
+            </tr>
+            {% if product.laptop.hdd_technology %}
+            <tr>
+                <th>HDD Technology</th>
+                <td>{{product.laptop.hdd_technology}}</td>
+            </tr>
+            {% endif %}
+            {% if product.laptop.hdd_size %}
+            <tr>
+                <th>HDD Size</th>
+                <td>{{product.laptop.hdd_size}}</td>
+            </tr>
+            {% endif %}
+            {% if product.laptop.ssd_size %}
+            <tr>
+                <th>HDD Size</th>
+                <td>{{product.laptop.ssd_size}}</td>
+            </tr>
+            {% endif %}
+            {% if product.laptop.speaker_discription %}
+            <tr>
+                <th>Speaker Description</th>
+                <td>{{product.laptop.speaker_discription}}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <th>Graphic Processor</th>
+                <td>{{product.laptop.graphic_processor}}</td>
+            </tr>
+            {% if product.laptop.graphic_card_size %}
+            <tr>
+                <th>Graphic Card Size</th>
+                <td>{{product.laptop.graphic_card_size}}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <th>Connectivity Type</th>
+                <td>{{product.laptop.connectivity_type}}</td>
+            </tr>
+            <tr>
+                <th>Number of USB 2.0 Ports</th>
+                <td>{{product.laptop.no_of_usb2_ports}}</td>
+            </tr>
+            <tr>
+                <th>Number of USB 3.0 Ports</th>
+                <td>{{product.laptop.no_of_usb3_ports}}</td>
+            </tr>
+            <tr>
+                <th>Number of HDMI Ports</th>
+                <td>{{product.laptop.no_of_hdmi_ports}}</td>
+            </tr>
+            <tr>
+                <th>Number of Audio-Out Ports</th>
+                <td>{{product.laptop.no_of_audio_out_ports}}</td>
+            </tr>
+            <tr>
+                <th>Number of Microphone Ports</th>
+                <td>{{product.laptop.no_of_microphone_ports}}</td>
+            </tr>
+            <tr>
+                <th>Power Source</th>
+                <td>{{product.laptop.power_source}}</td>
+            </tr>
+            <tr>
+                <th>Operating System</th>
+                <td>{{product.laptop.os}}</td>
+            </tr>
+            {% if product.laptop.avg_battery_standby %}
+            <tr>
+                <th>Average Battery Standby</th>
+                <td>{{product.laptop.avg_battery_standby}}</td>
+            </tr>
+            {% endif %}
+            <tr>
+                <th>Average Battery Life</th>
+                <td>{{product.laptop.avg_battery_life}}</td>
+            </tr>
+            <tr>
+                <th>Lithium Battery Energy Content</th>
+                <td>{{product.laptop.lithium_energy_battery_content}}</td>
+            </tr>
+            <tr>
+                <th>Included Components</th>
+                <td>{{product.laptop.included_components}}</td>
+            </tr>
+            <tr>
+                <th>Warrenty</th>
+                <td>{{product.laptop.warrenty}}</td>
+            </tr>
         {% endif %}
-        {% if product.laptop.hdd_size %}
-        <tr>
-            <th>HDD Size</th>
-            <td>{{product.laptop.hdd_size}}</td>
-        </tr>
-        {% endif %}
-        {% if product.laptop.ssd_size %}
-        <tr>
-            <th>HDD Size</th>
-            <td>{{product.laptop.ssd_size}}</td>
-        </tr>
-        {% endif %}
-        {% if product.laptop.speaker_discription %}
-        <tr>
-            <th>Speaker Description</th>
-            <td>{{product.laptop.speaker_discription}}</td>
-        </tr>
-        {% endif %}
-        <tr>
-            <th>Graphic Processor</th>
-            <td>{{product.laptop.graphic_processor}}</td>
-        </tr>
-        {% if product.laptop.graphic_card_size %}
-        <tr>
-            <th>Graphic Card Size</th>
-            <td>{{product.laptop.graphic_card_size}}</td>
-        </tr>
-        {% endif %}
-        <tr>
-            <th>Connectivity Type</th>
-            <td>{{product.laptop.connectivity_type}}</td>
-        </tr>
-        <tr>
-            <th>Number of USB 2.0 Ports</th>
-            <td>{{product.laptop.no_of_usb2_ports}}</td>
-        </tr>
-        <tr>
-            <th>Number of USB 3.0 Ports</th>
-            <td>{{product.laptop.no_of_usb3_ports}}</td>
-        </tr>
-        <tr>
-            <th>Number of HDMI Ports</th>
-            <td>{{product.laptop.no_of_hdmi_ports}}</td>
-        </tr>
-        <tr>
-            <th>Number of Audio-Out Ports</th>
-            <td>{{product.laptop.no_of_audio_out_ports}}</td>
-        </tr>
-        <tr>
-            <th>Number of Microphone Ports</th>
-            <td>{{product.laptop.no_of_microphone_ports}}</td>
-        </tr>
-        <tr>
-            <th>Power Source</th>
-            <td>{{product.laptop.power_source}}</td>
-        </tr>
-        <tr>
-            <th>Operating System</th>
-            <td>{{product.laptop.os}}</td>
-        </tr>
-        {% if product.laptop.avg_battery_standby %}
-        <tr>
-            <th>Average Battery Standby</th>
-            <td>{{product.laptop.avg_battery_standby}}</td>
-        </tr>
-        {% endif %}
-        <tr>
-            <th>Average Battery Life</th>
-            <td>{{product.laptop.avg_battery_life}}</td>
-        </tr>
-        <tr>
-            <th>Lithium Battery Energy Content</th>
-            <td>{{product.laptop.lithium_energy_battery_content}}</td>
-        </tr>
-        <tr>
-            <th>Included Components</th>
-            <td>{{product.laptop.included_components}}</td>
-        </tr>
-        <tr>
-            <th>Warrenty</th>
-            <td>{{product.laptop.warrenty}}</td>
-        </tr>
+
+        {% if product.mobile %}
+            <tr>
+                <th>OS</th>
+                <td>{{product.mobile.os}}</td>
+            </tr>
+            <tr>
+                <th>ROM</th>
+                <td>{{product.mobile.rom}}</td>
+            </tr>
+            <tr>
+                <th>RAM</th>
+                <td>{{product.mobile.ram}}</td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>{{product.mobile.color}}</td>
+            </tr>
+            <tr>
+                <th>Product Dimension</th>
+                <td>{{product.mobile.item_dim}}</td>
+            </tr>
+            <tr>
+                <th>Item weight</th>
+                <td>{{product.mobile.item_weight}}</td>
+            </tr>
+            <tr>
+                <th>Batteries</th>
+                <td>{{product.mobile.battery}}</td>
+            </tr>
+            <tr>
+                <th>Item Model Number</th>
+                <td>{{product.mobile.item_model_no}}</td>
+            </tr>
+            <tr>
+                <th>Processor</th>
+                <td>{{product.mobile.processor}}</td>
+            </tr>
+            <tr>
+                <th>Wireless communication technologies</th>
+                <td>{{product.mobile.wireless_com_tech}}</td>
+            </tr>
+            <tr>
+                <th>Connectivity Technology</th>
+                <td>{{product.mobile.connectivity_tech}}</td>
+            </tr>
+            <tr>
+                <th>Special Features</th>
+                <td>{{product.mobile.speacial_features}}</td>
+            </tr>
+            <tr>
+                <th>Display Technology</th>
+                <td>{{product.mobile.display_tech}}</td>
+            </tr>
+            <tr>
+                <th>Camera</th>
+                <td>{{product.mobile.camera}}</td>
+            </tr>
+            <tr>
+                <th>Form Factor</th>
+                <td>{{product.mobile.form_factor}}</td>
+            </tr>
+            <tr>
+                <th>Battery Rating</th>
+                <td>{{product.mobile.battery_rating}}</td>
+            </tr>
+            <tr>
+                <th>Whats in the box</th>
+                <td>{{product.mobile.whats_in_box}}</td>
+            </tr>
+            <tr>
+                <th>Warrenty</th>
+                <td>{{product.mobile.warrenty}}</td>
+            </tr>
+            {% endif %}
         </table>
+
     </div>
     <div><br>
         <h3 style="line-height:50px;">Addional Information</h3>
@@ -439,5 +558,17 @@ tr:hover{
 </div>
 <br><br>
 
+<script>
+    var mobile = "{{product.mobile}}"
+    if(mobile!=null){
+        console.log('a')
+        <!-- document.getElementById("feature").style.marginLeft = "-15px"; -->
+        <!-- document.getElementById("feature").style.marginRight = "40px"; -->
+        <!-- document.getElementById("feature").style.table.width = "40px"; -->
+    }
+</script>
+
 {% endblock %}
 
+<!-- margin-left: -15px;
+margin-right:40px; -->
