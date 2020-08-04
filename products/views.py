@@ -7,7 +7,7 @@ def index(request):
     return render(request, "index.html")
 
 def product(request):
-    product = Product.objects.get(id=6)
+    product = Product.objects.get(id=8)
     rating = list(range(product.rating))
     rating_un = list(range(5-len(rating)))
     save = ((product.mrp-product.deal_price)/product.mrp)*100

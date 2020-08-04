@@ -26,8 +26,13 @@ body{
     list-style-type: none;
 }
 h1{
+    margin-left: 0;
     font-size: 1.5rem;
     line-height: 2rem;
+}
+.properties{
+    font-weight: normal;
+    margin:20px;
 }
 .pro_info .price p{
     margin: 5px 0px;
@@ -165,7 +170,9 @@ tr:hover{
 }
 
 @media (max-width:500px){
-
+    .pro_info h1{
+        margin-top: 40px;
+    }
     .pro_photos img{
         margin-top: 0;
         margin: 0;
@@ -232,9 +239,8 @@ tr:hover{
             <img src="{{product.image_8.url}}" alt="">
             {% endif %}
         </div>
-
     </div>
-    <div class="pro_info"><br>
+    <div class="pro_info">
         <h1>{{product.title}} ({{product.laptop.description}}{{product.mobile.description}})</h1>
         {% for i in rating %}
         <span class="fa fa-star checked"></span>
@@ -269,6 +275,24 @@ tr:hover{
         </div>
     </div>
 </div>
+
+<!-- Properties -->
+        {% if product.sensor.property_1 %}
+        <br>
+        <div class="properties">
+        <p>{{product.sensor.property_1}}</p>
+        </div>
+        {% endif %}
+        {% if product.sensor.property_2 %}
+        <div class="properties">
+        <p>{{product.sensor.property_2}}</p>
+        </div>
+        {% endif %}
+        {% if product.sensor.property_3 %}
+        <div class="properties">
+        <p>{{product.sensor.property_3}}</p>
+        </div>
+        {% endif %}
 <div class="pro_banner">
     {% if product.pro_banner_1 %}
     <img src="{{product.pro_banner_1.url}}" alt="">
@@ -305,6 +329,8 @@ tr:hover{
         <h3 style="line-height:50px;">Technical Details</h3>
 
         <table align="center">
+
+            <!-- LAPTOP -->
             {% if product.laptop %}
             <tr>
                 <th>Brand</th>
@@ -456,7 +482,173 @@ tr:hover{
             </tr>
         {% endif %}
 
-        {% if product.mobile %}
+
+        <!-- Sensor -->
+        {% if product.sensor %}
+        <tr>
+            <th>Brand</th>
+            <td>{{product.sensor.brand}}</td>
+        </tr>
+        {% if product.sensor.model %}
+        <tr>
+            <th>Model</th>
+            <td>{{product.sensor.model}}</td>
+        </tr>
+        {% endif %}
+        {% if product.sensor.item_weight %}
+        <tr>
+            <th>Item Weight</th>
+            <td>{{product.sensor.item_weight}}</td>
+        </tr>
+        {% endif %}
+        {% if product.sensor.product_dim %}
+        <tr>
+            <th>Product Dimension</th>
+            <td>{{product.sensor.product_dim}}</td>
+        </tr>
+        {% endif %}
+        {% if product.sensor.part_no %}
+        <tr>
+            <th>Part No.</th>
+            <td>{{product.sensor.part_no}}</td>
+        </tr>
+        {% endif %}
+        {% if product.sensor.battery %}
+        <tr>
+            <th>Battery</th>
+            <td>{{product.sensor.battery}}</td>
+        </tr>
+        {% endif %}
+        {% if product.sensor.audio_focus %}
+        <tr>
+            <th>Audio Focus</th>
+            <td>{{product.sensor.audio_focus}}</td>
+        </tr>
+        {% endif %}
+        {% if product.sensor.programmable_btn %}
+        <tr>
+            <th>Programmable Button</th>
+            <td>{{product.sensor.programmable_btn}}</td>
+        </tr>
+        {% endif %}
+        {% if product.sensor.color %}
+        <tr>
+            <th>Color</th>
+            <td>{{product.sensor.color}}</td>
+        </tr>
+        {% endif %}
+        {% if product.sensor.hardware_interface %}
+        <tr>
+            <th>Hardware Interface</th>
+            <td>{{product.sensor.hardware_interface}}</td>
+        </tr>
+        {% endif %}
+        
+        {% if product.sensor.voltage %}
+        <tr>
+            <th>Voltage</th>
+            <td>{{product.sensor.voltage}}</td>
+        </tr>
+        {% endif %}
+        {% if product.sensor.color_screen %}
+        <tr>
+            <th>Color Screen</th>
+            <td>{{product.sensor.color_screen}}</td>
+        </tr>
+        {% endif %}
+        {% if product.sensor.compabitable_devises %}
+        <tr>
+            <th>Compabitable Devises</th>
+            <td>{{product.sensor.compabitable_devises}}</td>
+        </tr>
+        {% endif %}
+        {% endif %}
+
+
+        <!-- Electronic Components -->
+        {% if product.electronic_component %}
+        <tr>
+            <th>Brand</th>
+            <td>{{product.electronic_component.brand}}</td>
+        </tr>
+        {% if product.electronic_component.model %}
+        <tr>
+            <th>Model</th>
+            <td>{{product.electronic_component.model}}</td>
+        </tr>
+        {% endif %}
+        {% if product.electronic_component.item_weight %}
+        <tr>
+            <th>Item Weight</th>
+            <td>{{product.electronic_component.item_weight}}</td>
+        </tr>
+        {% endif %}
+        {% if product.electronic_component.product_dim %}
+        <tr>
+            <th>Product Dimension</th>
+            <td>{{product.electronic_component.product_dim}}</td>
+        </tr>
+        {% endif %}
+        {% if product.electronic_component.part_no %}
+        <tr>
+            <th>Part No.</th>
+            <td>{{product.electronic_component.part_no}}</td>
+        </tr>
+        {% endif %}
+        {% if product.electronic_component.battery %}
+        <tr>
+            <th>Battery</th>
+            <td>{{product.electronic_component.battery}}</td>
+        </tr>
+        {% endif %}
+        {% if product.electronic_component.audio_focus %}
+        <tr>
+            <th>Audio Focus</th>
+            <td>{{product.electronic_component.audio_focus}}</td>
+        </tr>
+        {% endif %}
+        {% if product.electronic_component.programmable_btn %}
+        <tr>
+            <th>Programmable Button</th>
+            <td>{{product.electronic_component.programmable_btn}}</td>
+        </tr>
+        {% endif %}
+        {% if product.electronic_component.color %}
+        <tr>
+            <th>Color</th>
+            <td>{{product.electronic_component.color}}</td>
+        </tr>
+        {% endif %}
+        {% if product.electronic_component.hardware_interface %}
+        <tr>
+            <th>Hardware Interface</th>
+            <td>{{product.electronic_component.hardware_interface}}</td>
+        </tr>
+        {% endif %}
+        
+        {% if product.electronic_component.voltage %}
+        <tr>
+            <th>Voltage</th>
+            <td>{{product.electronic_component.voltage}}</td>
+        </tr>
+        {% endif %}
+        {% if product.electronic_component.color_screen %}
+        <tr>
+            <th>Color Screen</th>
+            <td>{{product.electronic_component.color_screen}}</td>
+        </tr>
+        {% endif %}
+        {% if product.electronic_component.compabitable_devises %}
+        <tr>
+            <th>Compabitable Devises</th>
+            <td>{{product.electronic_component.compabitable_devises}}</td>
+        </tr>
+        {% endif %}
+        {% endif %}
+
+
+        <!-- Mobile -->
+            {% if product.mobile %}
             <tr>
                 <th>OS</th>
                 <td>{{product.mobile.os}}</td>
@@ -530,6 +722,9 @@ tr:hover{
                 <td>{{product.mobile.warrenty}}</td>
             </tr>
             {% endif %}
+
+            
+
         </table>
 
     </div>
@@ -562,9 +757,6 @@ tr:hover{
     var mobile = "{{product.mobile}}"
     if(mobile!=null){
         console.log('a')
-        <!-- document.getElementById("feature").style.marginLeft = "-15px"; -->
-        <!-- document.getElementById("feature").style.marginRight = "40px"; -->
-        <!-- document.getElementById("feature").style.table.width = "40px"; -->
     }
 </script>
 

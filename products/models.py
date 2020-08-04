@@ -87,11 +87,51 @@ class Laptop(models.Model):
     def __str__(self):
         return self.title
 
-class Sensors(models.Model):
-    pass
+class Sensor(models.Model):
+    title = models.CharField(max_length=50, blank=True, null=True)
+    brand = models.CharField(max_length=50, blank=True, null=True)
+    model = models.CharField(max_length=50, blank=True, null=True)
+    item_weight = models.CharField(max_length=50, blank=True, null=True)
+    product_dim = models.CharField(max_length=50, blank=True, null=True)
+    part_no = models.CharField(max_length=50, blank=True, null=True)
+    battery = models.CharField(max_length=50, blank=True, null=True)
+    audio_focus = models.CharField(max_length=50, blank=True, null=True)
+    programmable_btn = models.CharField(max_length=50, blank=True, null=True)
+    color = models.CharField(max_length=50, blank=True, null=True)
+    hardware_interface = models.CharField(max_length=50, blank=True, null=True)
+    voltage = models.CharField(max_length=50, blank=True, null=True)
+    color_screen = models.CharField(max_length=50, blank=True, null=True)
+    screen_size = models.CharField(max_length=50, blank=True, null=True)
+    compabitable_devises = models.CharField(max_length=50, blank=True, null=True)
+    property_1 = models.TextField(blank=True, null=True)
+    property_2 = models.TextField(blank=True, null=True)
+    property_3 = models.TextField(blank=True, null=True)
 
-class ElectronicComponents(models.Model):
-    pass
+    def __str__(self):
+        return self.title
+    
+class ElectronicComponent(models.Model):
+    title = models.CharField(max_length=50, blank=True, null=True)
+    brand = models.CharField(max_length=50, blank=True, null=True)
+    model = models.CharField(max_length=50, blank=True, null=True)
+    item_weight = models.CharField(max_length=50, blank=True, null=True)
+    product_dim = models.CharField(max_length=50, blank=True, null=True)
+    part_no = models.CharField(max_length=50, blank=True, null=True)
+    battery = models.CharField(max_length=50, blank=True, null=True)
+    audi_focus = models.CharField(max_length=50, blank=True, null=True)
+    programmable_btn = models.CharField(max_length=50, blank=True, null=True)
+    color = models.CharField(max_length=50, blank=True, null=True)
+    hardware_interface = models.CharField(max_length=50, blank=True, null=True)
+    voltage = models.CharField(max_length=50, blank=True, null=True)
+    color_screen = models.CharField(max_length=50, blank=True, null=True)
+    screen_size = models.CharField(max_length=50, blank=True, null=True)
+    compabitable_devises = models.CharField(max_length=50, blank=True, null=True)
+    property_1 = models.TextField(blank=True, null=True)
+    property_2 = models.TextField(blank=True, null=True)
+    property_3 = models.TextField(blank=True, null=True)
+    
+    def __str__(self):
+        return self.title
 
 class Product(models.Model):
     title = models.CharField(max_length=50, blank=True, null=True)
@@ -128,8 +168,8 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
     mobile = models.ForeignKey(Mobile, on_delete=models.CASCADE, blank=True, null=True)
     laptop = models.ForeignKey(Laptop, on_delete=models.CASCADE, blank=True, null=True)
-    sensors = models.ForeignKey(Sensors, on_delete=models.CASCADE, blank=True, null=True)
-    electronic_components = models.ForeignKey(ElectronicComponents, on_delete=models.CASCADE, blank=True, null=True)
+    sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE, blank=True, null=True)
+    electronic_component = models.ForeignKey(ElectronicComponent, on_delete=models.CASCADE, blank=True, null=True)
     seller = models.ForeignKey(Seller, on_delete=models.CASCADE, blank=True, null=True)
     
     def __str__(self):
