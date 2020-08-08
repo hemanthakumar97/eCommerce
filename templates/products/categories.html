@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block style %}
+@media (max-width: 500px){
+    .category{
+        display: none;
+    }
+}
+{% endblock %}
+
+{% block content %}
+
+{% if laptops %}
+<h1>Laptops:</h1>
+<div class="laptops" align="center">
+{% for laptop in laptops %}
+        <a href="#"><div class="products">
+            <img src="{{laptop.main_image.url}}" alt="Samsung S20 Ultra">
+            <div class='details' align='center'>            
+                <h3 style="margin-bottom: 8px;">{{laptop.title}}</h3>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <h4>{{laptop.price}}</h4>
+                <p>{% if laptop.is_nocost %} No Cost EMI available. {% endif %}</p>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+{% endif %}
+
+{% if mobiles %}
+<h1>Mobiles:</h1>
+<div class="mobiles" align="center">
+{% for mobile in mobiles %}
+        <a href="#"><div class="products">
+            <img src="{{mobile.main_image.url}}" alt="Samsung S20 Ultra">
+            <div class='details' align='center'>            
+                <h3 style="margin-bottom: 8px;">{{mobile.title}}</h3>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <h4>{{mobile.price}}</h4>
+                <p>{% if mobile.is_nocost %} No Cost EMI available. {% endif %}</p>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+{% endif %}
+
+
+{% if sensors %}
+<h1>Sensors:</h1>
+<div class="sensors" align="center">
+{% for sensor in sensors %}
+        <a href="#"><div class="products">
+            <img src="{{sensor.main_image.url}}" alt="Samsung S20 Ultra">
+            <div class='details' align='center'>            
+                <h3 style="margin-bottom: 8px;">{{sensor.title}}</h3>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <h4>{{sensor.price}}</h4>
+                <p>{% if sensor.is_nocost %} No Cost EMI available. {% endif %}</p>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+{% endif %}
+
+{% if electronic_component %}
+<h1>Electronic Component:</h1>
+<div class="electronic_component" align="center">
+{% for electronic_component in electronic_components %}
+        <a href="#"><div class="products">
+            <img src="{{electronic_component.main_image.url}}" alt="Samsung S20 Ultra">
+            <div class='details' align='center'>            
+                <h3 style="margin-bottom: 8px;">{{electronic_component.title}}</h3>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <h4>{{electronic_component.price}}</h4>
+                <p>{% if electronic_component.is_nocost %} No Cost EMI available. {% endif %}</p>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

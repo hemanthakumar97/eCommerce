@@ -1,0 +1,86 @@
+/* productss */
+h1{
+    font-family: Arial Rounded MT; 
+    margin: 10px 20px;
+}
+
+
+.mobiles a, .laptops a, .sensors a, .electronic_components a{
+    color: black;
+}
+
+.laptops a img, .mobiles a img, .sensors a img, .electronic_components a img{
+    position: relative;
+    width:100%;
+    height: 50%;
+}
+.details p{
+    font-weight: normal;
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+.products{
+    zoom:90%;
+    position: relative;
+    background: white;
+    margin: 15px 25px;
+    padding: 10px 30px;
+    padding-top: 5px;
+    width: 180px;
+    filter: drop-shadow(0px 0px 5px rgba(0,0,0,0.3));
+    display: inline-block;
+    height: 320px;
+    vertical-align: top;
+}
+
+.checked{
+    color: orange;
+}
+
+/* position */
+.position-top{
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+.right-0{
+    right: 0;
+}
+
+@media (max-width: 800px){
+    .products{
+        zoom:85%;
+    }
+}
+@media (max-width: 750px){
+    .products{
+        zoom:80%;
+    }
+}
+@media (max-width: 700px){
+    .products{
+        zoom:70%;
+    }
+}
+@media (max-width: 600px){
+    .products{
+        zoom:65%;
+    }
+}
+@media (max-width: 500px){
+    h1{
+        font-size: 1rem;
+        margin-top: 70px;
+    }
+    .products{
+        zoom:65%;
+        margin-top: 10px;
+    }
+
+@media (max-width:380px){
+    .products{
+        zoom:50%;
+    }
+}
+}

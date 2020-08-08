@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/categories.css' %}">
     <title>{% block title %}{% endblock %}</title>
     <style>{% block style %}{% endblock %}</style>
 </head>
@@ -73,19 +74,19 @@
         <div class="category" align='center'>
             <div class="cat_web">
                 <ul>
-                    <li><a href="#">Laptops</a></li>
-                    <li><a href="#">Mobiles</a></li>
-                    <li><a href="#">Sensors</a></li>
-                    <li><a href="#">Electronic Components</a></li>
+                    <li><a href="{% url 'products:laptops' %}">Laptops</a></li>
+                    <li><a href="{% url 'products:mobiles' %}">Mobiles</a></li>
+                    <li><a href="{% url 'products:sensors' %}">Sensors</a></li>
+                    <li><a href="{% url 'products:electronic_components' %}">Electronic Components</a></li>
                </ul>
             </div>
             <div class="cat_mobile">
                 <button class="dropbtn">Categories <i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                  <a href="#">Laptops</a>
-                  <a href="#">Mobiles</a>
-                  <a href="#">Sensors</a>
-                  <a href="#">Electronic Components</a>
+                  <a href="{% url 'products:laptops' %}">Laptops</a>
+                  <a href="{% url 'products:mobiles' %}">Mobiles</a>
+                  <a href="{% url 'products:sensors' %}">Sensors</a>
+                  <a href="{% url 'products:electronic_components' %}">Electronic Components</a>
                 </div>
             </div>
         </div>
@@ -102,5 +103,5 @@
         <a href="#">Instagram</a> 
         <p>&copy;2020 HKTECH SHOP</p>
     </div>
-<script src="{% static 'js/main.js' %}" type="text/javascript"></script>
+<!-- <script src="{% static 'js/main.js' %}" type="text/javascript"></script> -->
 </body>
