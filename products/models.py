@@ -135,6 +135,7 @@ class ElectronicComponent(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=50, blank=True, null=True)
+    is_published = models.BooleanField(default=True)
     main_image = models.ImageField(upload_to='producs/', blank=True, null=True)
     image_1 = models.ImageField(upload_to='producs/', blank=True, null=True)
     image_2 = models.ImageField(upload_to='producs/', blank=True, null=True)

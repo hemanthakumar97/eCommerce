@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from .models import *
 import math
+from django.template.defaulttags import register
+
 
 
 def index(request):
@@ -8,7 +10,8 @@ def index(request):
 
 def laptops(request):
     laptops = Product.objects.filter(category_id=2)
-    context = {'laptops':laptops}
+    context = {'laptops':laptops,
+                }
     return render(request, "products/categories.html", context)
 
 def mobiles(request):
@@ -26,8 +29,14 @@ def electronic_components(request):
     context = {'electronic_components':laptops}
     return render(request, "products/categories.html", context)
 
-def product(request):
-    product = Product.objects.get(id=10)
+def rating(request, id):
+    rating = id
+    context = {'rating':rating}
+    print(rating)
+    return reverse("laptops", context)
+
+def product(request, product_id):
+    product = Product.objects.get(id=product_id)
     rating = list(range(product.rating))
     rating_un = list(range(5-len(rating)))
     save = ((product.mrp-product.deal_price)/product.mrp)*100

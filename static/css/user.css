@@ -84,6 +84,7 @@ form button:hover, .buttons input:hover{
     background: #07CB79;
     border: 2px solid black;
     box-shadow: 0 0 5px black;
+    color: black;
 }
 
 /* footer */
