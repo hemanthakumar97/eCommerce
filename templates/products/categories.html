@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 
+{% block title %}
+{% if laptops %}Laptops{% endif %}
+{% if mobiles %}Mobiles{% endif %}
+{% if sensors %}Sensors{% endif %}
+{% if electronic_components %}Electronic Components{% endif %}
+{% endblock %}
+
 {% block style %}
 .footer a{
     color:white;
@@ -84,7 +91,7 @@
 {% endif %}
 
 
-{% if electronic_component %}
+{% if electronic_components %}
 <h1>Electronic Component:</h1>
 <div class="electronic_component" align="center">
 {% for electronic_component in electronic_components %}
