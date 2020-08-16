@@ -27,7 +27,7 @@ SECRET_KEY = 'eltfl+p$gbduk1*d+9wj91m_wuckql*@3p)pf#n6#=2qs+%z$*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.43.232", "127.0.0.1"]
+ALLOWED_HOSTS = ["192.168.43.232", "127.0.0.1", "*"]
 
 # AUTH_USER_MODEL = 'accounts.User'
 # Application definition
