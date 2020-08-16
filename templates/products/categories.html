@@ -11,6 +11,9 @@
 .footer a{
     color:white;
 }
+img{
+    margin-top:15px;
+}
 @media (max-width: 500px){
     .category{
         display: none;
@@ -29,11 +32,11 @@
         <img src="{{laptop.main_image.url}}" alt="{{laptop.title}}">
         <div class='details' align='center'>            
             <h3 style="margin-bottom: 8px;">{{laptop.title}}</h3>
-                <h4>{{laptop.price}}</h4>
-            <fieldset class="starability-result mx-auto" data-rating="{{ laptop.rating }}">
+            <h2>Rs.{{laptop.deal_price}}</h2>
+            <!-- <fieldset class="starability-result mx-auto" data-rating="{{ laptop.rating }}">
                 Rated: {{ laptop.rating|add:-5 }} Stars
             </fieldset>
-            {% if laptop.rating > 0 %}1{% endif %}
+            {% if laptop.rating > 0 %}1{% endif %} -->
             <p>{% if laptop.is_nocost %} No Cost EMI available. {% endif %}</p>
         </div>
     </a>
@@ -57,7 +60,7 @@
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star"></span>
-        <h4>{{mobile.price}}</h4>
+        <h2>Rs.{{mobile.deal_price}}</h2>
         <p>{% if mobile.is_nocost %} No Cost EMI available. {% endif %}</p>
     </div>
 </a>
@@ -81,7 +84,7 @@
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star"></span>
-            <h4>{{sensor.price}}</h4>
+            <h2>Rs.{{sensor.deal_price}}</h2>
             <p>{% if sensor.is_nocost %} No Cost EMI available. {% endif %}</p>
         </div>
     </a>

@@ -86,7 +86,7 @@ tr:hover{
     width: 100%;
 }
 .pro_photos img{
-    width: 100%;
+    width: 50%;
     /* margin: 20px; */
     margin: 0;
     <!-- margin-top: -50px; -->
@@ -220,6 +220,9 @@ tr:hover{
     <div class="pr">
         <div class="pro_photos"  align='center'>
             {% if product.image_1 %}
+            <img src="{{product.main_image.url}}" alt="">
+            {% endif %}
+            {% if product.image_1 %}
             <img src="{{product.image_1.url}}" alt="">
             {% endif %}
             {% if product.image_2 %}
@@ -246,7 +249,7 @@ tr:hover{
         </div>
     </div>
     <div class="pro_info">
-        <h1>{{product.title}} ({{product.laptop.description}}{{product.mobile.description}})</h1>
+        <h1>{{product.title}} {{product.laptop.description}}{{product.mobile.description}}</h1>
         {% for i in rating %}
         <span class="fa fa-star checked"></span>
         {% endfor %}
