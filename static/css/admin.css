@@ -24,7 +24,7 @@ div.breadcrumbs a{
     color: black;
 }
 
-.module h2, .module caption, .inline-group h2{
+.module h2, .module caption, .inline-group h2, .selector-chosen h2{
     background-color: #07CB79;
 }
 

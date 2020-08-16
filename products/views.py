@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect
 from .models import *
+from cart.models import Cart
 import math
 from django.template.defaulttags import register
+from django.contrib.auth.models import User
 
 
 
@@ -38,12 +40,19 @@ def rating(request, id):
 def product(request, product_id):
     product = Product.objects.get(id=product_id)
     rating = list(range(product.rating))
+    user = request.user
+    cart = []
+    if user.is_authenticated:
+        cart_items = Cart.objects.filter(user=request.user)
+        for i in cart_items:
+            cart.append(i.product.id)
     rating_un = list(range(5-len(rating)))
     save = ((product.mrp-product.deal_price)/product.mrp)*100
     context = {
         'product':product,
         'rating': rating,
         'rating_un': rating_un,
+        'cart':cart,
         'save': save
     }
     return render(request, "products/product_descr.html", context)

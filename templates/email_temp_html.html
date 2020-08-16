@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-    Hi {{ user.username }}, Please click on the bellow button to confirm your registration<br>
+    Hi {{ user.first_name }}, Please click on the below button to confirm your registration<br>
     <a href="http://{{ domain }}{% url 'accounts:activate' uidb64=uid token=token %}" ><button style="font-weight:bolder; color:white; padding-top:10px; padding-bottom:8px; padding-left:10px; padding-right:10px; border:2px solid white; text-align:center;">Click here to confirm</button></a>
  
 </body>

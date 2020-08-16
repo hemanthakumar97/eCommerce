@@ -31,7 +31,7 @@
             <i class="fa fa-bars" id='menu'></i>
         </label>
         <a href="{% url 'products:index' %}"><label class='logo'>HKTECH SHOP</label></a>
-        <a class='cart' href="cart.html"><i class="fa fa-shopping-cart"></i></a>
+        <a class='cart' href="{% url 'cart:cart' %}"><i class="fa fa-shopping-cart"></i></a>
         <ul>
             <div class="dropdown">
                 {% if user.is_authenticated %}
@@ -67,8 +67,8 @@
               <li><a href="{% url 'accounts:signup' %}">Signup</a></li>
               <li><a href="{% url 'accounts:login' %}">Login</a></li>
               {% endif %}
-              <li><a class='cart1' href="cart.html"><i class="fa fa-shopping-cart"></i> cart</a></li>  
-        </ul>
+              <li><a class='cart1' href="{% url 'cart:cart' %}"><i class="fa fa-shopping-cart"></i> cart</a></li>  
+        </ul>  
     </nav><div class="bel_nav"><h1></h1></div>
 
         <div class="category" align='center'>

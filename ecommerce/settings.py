@@ -40,8 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap4',
+
+    # MY APPS
     'accounts',
     'products',
+    'cart',
 ]
 
 MIDDLEWARE = [
