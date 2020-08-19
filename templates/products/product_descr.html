@@ -278,12 +278,17 @@ tr:hover{
             </ul>
         </div><br>
         <div class="buttons" align='center'>
-            {% if product.id in cart %}
-            <a href="{% url 'cart:cart' %}">Got to Cart</a>
+            {% if not user.is_authenticated %}
+                <a href="{% url 'accounts:login' %}">Add to Cart</a>
+                <a href="{% url 'accounts:login' %}">Buy Now</a><br><br>
             {% else %}
-            <a href="{% url 'cart:add_cart' product.id %}">Add to Cart</a>
+                {% if product.id in cart %}
+                <a href="{% url 'cart:cart' %}">Got to Cart</a>
+                {% else %}
+                <a href="{% url 'cart:add_cart' product.id %}">Add to Cart</a>
+                {% endif %}
+                <a href="{% url 'cart:add_cart' product.id %}">Buy Now</a><br><br>
             {% endif %}
-            <a href="{% url 'cart:add_cart' product.id %}">Buy Now</a><br><br>
         </div>
     </div>
 </div>

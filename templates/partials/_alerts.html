@@ -4,7 +4,7 @@
         color: #721c24;
         background-color: #f8d7da;
         border-color: #f5c6cb;
-    }
+   }
     
     .alert-Success {
         color: #155724;
@@ -19,21 +19,26 @@
         margin-bottom: 1rem;
         border: 1px solid transparent;
         border-radius: .25rem;
+        margin: 5px 20px;
     }
     
+    @media(max_width:500px){
+        .alert{
+            margin:5px 10px;
+    }
 </style>
 
 
 {% if messages %}
 {% for message in  messages %}
 <div id="message" class="alert alert-{{ message.tags }} close" role="alert">
-          <strong>
+          <!-- <strong>
             {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
                 ERROR:
             {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
                 Success: 
             {% endif %}
-            </strong>
+            </strong> -->
             {{ message }}
 </div>
 {% endfor %}

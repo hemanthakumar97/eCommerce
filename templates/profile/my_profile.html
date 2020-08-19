@@ -1,0 +1,438 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+
+*{
+    padding: 0; 
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.cards p{
+    margin:10px;
+}
+.mid-box, .personal_info{
+    background: white;
+    height: minmax(80%,auto);
+    width: 420px;
+    /* max-width: 350px;
+    max-width: 400px; */
+    margin: 30px 0;
+    padding: 20px;
+    padding-bottom: 35px;
+    font-family: Arial,sans-serif;
+    filter: drop-shadow(0px 0px 7px rgba(0,0,0,0.4));
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+form input[id=pi],textarea, .addr, .add{
+    padding: 7px 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+    border: 1px solid black;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+form input[type=radio]{
+margin-right: 80px;
+}
+
+form>h1{
+    padding-bottom: 20px;
+    font-weight: normal;
+}
+
+form input[type=submit], .buttons input, button{
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 10px 30px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    border: 2px solid #07CB79;
+    background: black;
+    outline: none;
+    box-shadow: 0 0 5px black;
+}
+
+form button:hover, .buttons input:hover{
+    background: #07CB79;
+    border: 2px solid black;
+    box-shadow: 0 0 5px black;
+    color: black;
+}
+
+form input[name='town']{
+    width:50%;
+    height:50px;
+    padding: 7px 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+form input[name='pin']{
+    margin-left:2%; 
+    width:21%;
+    height:50px;
+    padding: 7px 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+
+form input:focus, form textarea:focus{
+    outline: none;
+    box-shadow: 0 0 5px #07CB79;
+    border: 2px solid #07CB79;
+}
+
+.mid-box{
+    height: auto;
+    width: 90%;
+    padding-left: 50px;
+}
+#manage_addr, #saved_cards, #add_addr, #add_card{
+    display: none;
+}
+
+.inline{
+    display: inline;
+}
+.fr{
+    float: right;
+    margin-right: 10px;
+}
+a{
+    line-height: 25px;
+}
+
+.acc_info{
+    display: grid;
+    grid-column-gap: 10px;
+    grid-template-columns: 35% 65%;
+    margin: 10px 50px;
+}
+form input[id=pi], textarea{
+    width: 74%;
+    height: 50px;
+}
+.addr, .add{
+    width: 74%;
+}
+.mid-box a, .add p, .addr{
+    font-weight: normal;
+}
+.add{
+    cursor: pointer;
+    line-height: 30px;
+}
+.addr li, .mid-box ul li a{
+    color: black;
+}
+input[type=radio]:checked{
+    color: green;
+}
+.buttons{
+    position: relative;
+    left: 35%;
+    transform: translate(-50%,0);
+}
+
+textarea{
+    resize: none;
+}
+.buttons button, .buttons input{
+    margin: 10px 30px;
+}
+
+.mid-box ul li{
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 40px; ;
+    padding-left: 10px;
+    font-weight: normal;
+}
+form input[name='first_name'], form input[name='last_name'], 
+form input[name='exp_dt']{
+    display: inline;
+    width: 35%;
+    margin-right: 3%;
+}
+
+form input[name='cvv']{
+    width:20%;
+    margin-right: 3%;
+    margin-left: 3%;
+}
+
+
+@media (max-width:500px){
+    .category{
+        display: none;
+    }
+    form h1{
+        margin-top:0px;
+        font-size: 30px;
+    }
+    .acc_info{
+        display: block;
+        margin: 10px;
+    }
+    .mid-box{
+        width: 100%;
+        padding: 15px;
+        padding-right:5px;
+    }
+    form input[id=pi], textarea{
+        width: 98%;
+        height: 60px;
+    }
+    .add, .addr{
+        width: 98%;
+    }
+    .buttons{
+        position: relative;
+        left: 20%;
+    }    
+    form input[name='first_name'], form input[name='last_name'],
+    form input[name='exp_dt']{
+        display: inline;
+        width: 47%;
+        margin-right: 2%;
+    }
+
+    form input[name='cvv']{
+        width:30%;
+        <!-- margin-right: 3%; -->
+        margin-left: 3%;
+    }
+
+    form input[name='town']{
+        width:60%;
+    }
+    form input[name='pin']{
+        width:35%;
+    }
+  
+{% endblock %}
+
+{% block content %}
+{% include "partials/_alerts.html" %}
+<div class="acc_info">
+
+    <!-- Profile Information -->
+    <div class="left_nav">
+        <div class="mid-box"><br>
+            <h2>ACCOUNT SETTINGS</h2>
+            <ul>
+                <li onclick="personal_info()">Personal Information</li>
+                <li onclick="manage_addr()">Manage Addresses</li>
+                <!-- <li onclick="change_password()">Change Password</li> -->
+                <li><a href="change_password.html">Change Password</a></li>
+            </ul><br>
+            <h2>PAYMENTS</h2>
+            <ul>
+                <li onclick="saved_cards()">Saved Cards</li>
+                <li onclick="wallet()">Wallet</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div>
+        <div class="mid-box" id ='personal_info'>
+            <form action="#" method="POST"><br>
+            {% csrf_token %}
+                <h1>Personal Information</h1>
+                <input type="text" placeholder="First Name" name="first_name" id='pi' value="{{user_info.first_name}}" required>
+                <input type="text" placeholder="Last Name" name="last_name" id='pi' value="{{user_info.last_name}}">
+                <h3>Your Gender</h3>
+                <label for="male" style="font-weight:normal">Male</label>
+                <input type="radio" id="male" name='gender' value='male' 
+                {% if profile_info.gender == "male" %}checked{% endif %} 
+                {% if profile_info.gender %}disabled{% endif %} required>
+                <label for="female"  style="font-weight:normal">Female</label>
+                <input type="radio" id="female" name='gender' value='female'
+                {% if profile_info.gender == "female" %}checked{% endif %}
+                {% if profile_info.gender %}disabled{% endif %}><br><br>
+                <h3>Email Address</h3>
+                <input type="email" placeholder="Email" name='email' id='pi' 
+                value="{{user_info.email}}"  {% if user_info.email %}disabled{% endif %} required>
+                <h3>Mobile Number</h3>
+                <input type="text" placeholder="Mobile Number" name='mobile' id='pi' 
+                value="{{profile_info.mobile}}"><br>
+                <div class="buttons">
+                    <input type="submit" value="Save" name='pers_info'>
+                    <!-- <button type="cancel">Cancel</button>  -->
+                    <!-- <input style="margin-left: 50px;" type="submit" name="cancel" value="cancel" onclick="history.go(-1)"/>    -->
+                    <input type="reset" onclick="cancel()" value="Cancel"> 
+                </div>
+                <!-- <input type="submit" name='Save'> -->
+            </form><br>
+            <a href="change_password.html">Change Password</a><br>
+            <a href="deactivate_acc.html">Deactivate Account</a>
+        </div>
+        
+        
+
+        <!-- Manage Addresses -->
+        <div></div>
+        <div class="mid-box" id='manage_addr'><br>
+            <form action="" method="POST">
+            {% csrf_token %}
+                <h1>Manage Addresses</h1>
+                    <div class="add" onclick="add_addr()">
+                    <li class="inline">Add new Address</li>
+                    <span><i class="fa fa-plus inline fr"></i></span>
+                </div>
+            <div id="add_addr">
+                    <input type="text" placeholder="First Name" name="first_name" id='pi' required>
+                    <input type="text" placeholder="Last Name" name="last_name" id='pi'>
+                    <input type="text" placeholder="Mobile Number" name='mobile' id='pi' required>
+                    <input type="text" placeholder="Locality" name='locality' id='pi' required><br>
+                    <textarea style='height:100px;' rows=5 placeholder="Address (Area and Street)" name='area' required></textarea><br>
+                    <input type="text" placeholder="City/Town" name='town' required>
+                    <input placeholder="Pincode" name='pin' required>    
+                    <input type="text" placeholder="Landmark (optional)" name='landmark' id='pi'><br>
+                    <div class="buttons">
+                        <input type="submit" value="Save" name='address'> 
+                        <!-- <button onclick="cancel()">Cancel</button>     -->
+                        <input type="reset" onclick="cancel()" value="Cancel"> 
+                    </div>
+                </div><br>
+                {% for address in addresses %}
+                <div class="addr">
+                    <h4 class="inline">{{address.first_name}} {{address.last_name}}</address></h4>
+                    <span><i class="fa fa-edit inline fr"></i></span>
+                    <p>{{address.locality}}</p>
+                    <p>{{address.area}}</p>
+                    <p>{{address.city}}-{{address.pin}}</p>
+                    <p>Mob: {{address.mobile}}</p>
+                    {% if address.landmark %}
+                    <p>Landmark: {{address.landmark}}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}                
+            </form>
+        </div>
+
+        <div></div>
+        <div class="mid-box" id="saved_cards"><br>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <h1>Manage Saved Cards</h1>
+                <div  onclick="add_card()" class="add">
+                    <li class="inline">Add New Card</li>
+                    <span><i class="fa fa-plus inline fr"></i></span>
+                </div>           
+                <div id="add_card">
+                    <input type="text" placeholder="Enter Card Number" name="card_no" id='pi' required><br>
+                    <!-- <input type="text" placeholder="Expiry Month" name="expiry_month" id='pi' required>
+                    <input type="text" placeholder="Expiry Year" name="expiry_year" id='pi' required> -->
+                    <label for="exp_date">Expiry Date </label>
+                    <select name="exp_month" id="exp_date">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value='5'>5</option>
+                        <option value='6'>6</option>
+                        <option value='7'>7</option>
+                        <option value='8'>8</option>
+                        <option value='9'>9</option>
+                        <option value='10'>10</option>
+                        <option value='11'>11</option>
+                        <option value='12'>12</option>
+                    </select>
+                    
+                    <select name="exp_year" id="exp_date">
+                        <option value='2020'>2020</option>
+                        <option value='2021'>2021</option>
+                        <option value='2022'>2022</option>
+                        <option value='2023'>2023</option>
+                        <option value='2024'>2024</option>
+                        <option value='2025'>2025</option>
+                        <option value='2026'>2026</option>
+                        <option value='2027'>2027</option>
+                        <option value='2028'>2028</option>
+                        <option value='2029'>2029</option>
+                    </select>
+
+                    <input type="text" placeholder="CVV/CVC" name="cvv" id='pi' required>
+                    <input type="text" placeholder="Name on Card" name='name_on_card' id='pi' required>
+                    <div class="buttons">
+                        <input type="submit" value="Save" name="add_card"> 
+                        <!-- <button onclick="cancel()">Cancel</button>    -->
+                        <input type="reset" onclick="cancel()" value="Cancel"> 
+                    </div>    
+                </div><br>
+                    {% for card in cards %}
+                    <div class="cards addr">
+                        <h4 class="inline">State Bank of India Debit Card</h4>
+                        <span><i class="fa fa-trash inline fr"></i></span><br>
+                        <p class="inline"><b>Card No: </b>{{card.card_no}}</p><br>
+                        <p class="inline"><b>Name: </b>{{card.name}}</p><br>
+                        <p class="inline"><b>Expiry Date: </b>{{card.expiry_month}}</p>
+                        <p class="inline"> {{card.expiry_year}}</p>
+                    </div> 
+                    {% endfor %}
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+var x = document.getElementById("personal_info");
+var y = document.getElementById("manage_addr");
+var z = document.getElementById("saved_cards");
+var add_addrs = document.getElementById('add_addr');
+var add_cards = document.getElementById('add_card')
+
+function personal_info() {
+      x.style.display = "block";
+      y.style.display = "none";
+      z.style.display = "none";
+  }
+
+function manage_addr() {
+    x.style.display = "none";
+    y.style.display = "block";
+    z.style.display = "none";
+  }
+function saved_cards() {
+    x.style.display = "none";
+    y.style.display = "none";
+    z.style.display = "block";
+  }
+
+function add_addr(){
+    add_addrs.style.display = 'block'
+}
+
+function add_card(){
+    add_cards.style.display = 'block'
+}
+
+function cancel(){
+    add_cards.style.display = 'none';
+    add_addrs.style.display = 'none';
+}
+</script>
+
+  
+{% endblock %}

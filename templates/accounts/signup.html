@@ -15,8 +15,17 @@
     <form class="signup" method='POST' style="height: 60%; padding-bottom:385px;"><br>
         {% csrf_token %}
         <h1 align='center'>Create Account</h1>
-        <p>Your Name</p>
-        <input type="text" placeholder="Full Name" name='full_name' required><br>
+        <p>Name</p>
+        <input type="text" placeholder="Name" name='name' required><br>
+        <!-- <p>First Name</p>
+        <input type="text" placeholder="First Name" name='first_name' required><br> -->
+        <!-- <p>Last Name</p>
+        <input type="text" placeholder="Last Name" name='last_name'><br>
+        <p>Gender</p>
+        <label for="male">Male</label>
+        <input type="radio" name="gender" id="male" value='male'>
+        <label for="female">Female</label>
+        <input type="radio" name="gender" id="female" value='female'><br><br> -->
         <p>Mobile Number</p>
         <input type="text" placeholder="Mobile Number" name='mobile'><br>
         <p>Email</p>

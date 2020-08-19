@@ -13,25 +13,27 @@ from django.http import HttpResponse
 from django.contrib.auth import get_user_model
 # from account.models import *
 import math, random 
+from user_profile.models import ProfileInfo
 from django.contrib import messages
 
 
 def signup(request):
     if request.method == 'POST':
         username = request.POST['email']
-        full_name = request.POST['full_name'].title()
         email = request.POST['email']
+        full_name = request.POST['name'].title()
         password = request.POST['password']
-        # mobile = request.POST['mobile']
+        mobile = request.POST['mobile']
         if User.objects.filter(email=email).exists():
             messages.error(request, 'Email is already registered')
             return render(request, 'accounts/signup.html')
-        # if User.objects.filter(mobile=mobile).exists():
-        #     messages.error(request, 'Mobile Number is already registered')
+        if ProfileInfo.objects.filter(mobile=mobile).exists():
+            messages.error(request, 'Mobile Number is already registered')
             return render(request, 'accounts/signup.html')
         user = User.objects.create_user(username=email, email=email, password=password, first_name=full_name)
-        user.is_active = False
+        user.is_active = True
         user.save()
+        ProfileInfo.objects.create(user=user, mobile=mobile)
         current_site = get_current_site(request)
         mail_subject = 'Activate your account.'
         message = render_to_string('email_temp_html.html', {
@@ -77,9 +79,14 @@ def login(request):
             auth.login(request,user)
             messages.success(request,'Loged in successfully')
             return redirect('products:index')
+        elif not User.objects.filter(username=email):
+            messages.error(request,'email or mobile is not registered')
+            return redirect("accounts:signup")
+        elif not User.objects.get(username=email).is_active:
+            messages.error(request,'email is not verified')
+            return redirect("accounts:login")
         else:
             messages.error(request,' Invalid username or password')
-            return render(request,'accounts/login.html')
     return render(request, 'accounts/login.html')
 
 
