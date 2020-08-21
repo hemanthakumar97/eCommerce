@@ -58,11 +58,13 @@ def my_profile(request):
                 messages.error(request,"Something is wrong")
             return redirect("user_profile:profile")
 
-        
-    user_info = User.objects.get(id=request.user.id)
-    profile_info = ProfileInfo.objects.get(user=request.user)
-    addresses = Address.objects.filter(user=request.user)
-    cards = Card.objects.filter(user=request.user)
+    user = request.user
+    if not user.is_authenticated:
+        return redirect("accounts:login") 
+    user_info = User.objects.get(id=user.id)
+    profile_info = ProfileInfo.objects.get(user=user)
+    addresses = Address.objects.filter(user=user)
+    cards = Card.objects.filter(user=user)
     context = {
                 "user_info":user_info,
                 "profile_info":profile_info,

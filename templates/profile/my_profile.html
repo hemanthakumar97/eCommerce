@@ -241,8 +241,7 @@ form input[name='cvv']{
             <ul>
                 <li onclick="personal_info()">Personal Information</li>
                 <li onclick="manage_addr()">Manage Addresses</li>
-                <!-- <li onclick="change_password()">Change Password</li> -->
-                <li><a href="change_password.html">Change Password</a></li>
+                <li><a href="{% url 'accounts:change_password' %}">Change Password</a></li>
             </ul><br>
             <h2>PAYMENTS</h2>
             <ul>
@@ -283,8 +282,8 @@ form input[name='cvv']{
                 </div>
                 <!-- <input type="submit" name='Save'> -->
             </form><br>
-            <a href="change_password.html">Change Password</a><br>
-            <a href="deactivate_acc.html">Deactivate Account</a>
+            <a href="{% url 'accounts:change_password' %}">Change Password</a><br>
+            <a href="{% url 'accounts:deactivate' %}">Deactivate Account</a>
         </div>
         
         

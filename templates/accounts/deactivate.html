@@ -1,0 +1,28 @@
+{% extends 'accounts/base.html' %}
+
+{% block styles %}
+<style>
+    input[type=submit]{
+        margin-left:-120px;
+    }
+    input[type=reset]{
+        left:310px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class="mid-box">
+        <form method="POST">
+            {% csrf_token %}
+            <h1>Deactivate Account</h1>
+            {% include "partials/_alerts.html" %}
+            <p>Password</p>
+            <input type="password" placeholder="Password" name='password'>
+            <div class="buttons"><br>
+                <input type="submit" value="Submit">
+                <input type="reset" value="Cancel">
+            </div>        
+        </form>
+    </div>
+{% endblock %}

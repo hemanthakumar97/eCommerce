@@ -14,7 +14,7 @@ from django.contrib.auth import get_user_model
 # from account.models import *
 import math, random 
 from user_profile.models import *
-from cart.models import Cart
+from cart.models import *
 from django.contrib import messages
 
 
@@ -32,7 +32,7 @@ def signup(request):
             messages.error(request, 'Mobile Number is already registered')
             return render(request, 'accounts/signup.html')
         user = User.objects.create_user(username=email, email=email, password=password, first_name=full_name)
-        user.is_active = False
+        user.is_active = True
         user.save()
         ProfileInfo.objects.create(user=user, mobile=mobile)
         current_site = get_current_site(request)
@@ -72,7 +72,7 @@ def activate(request, uidb64, token):
 def login(request):
     if request.method == 'POST':
         email = request.POST['username']
-        user = User.objects.filter(email=email)
+        # user = User.objects.filter(email=email)
         # username = user.username
         password = request.POST['password']
         user = auth.authenticate(username=email, password=password)
@@ -98,7 +98,6 @@ def logout(request):
 
 def forgot_password(request):
     return render(request, "accounts/forgot_password.html")
-
 
 def new_password(request):
     if user.is_authenticated:
@@ -130,21 +129,16 @@ def change_password(request):
     else:
         return redirect("accounts:login")
 
-
 def deactivate(request):
     user =request.user
     if request.method=="POST":
         password = request.POST['password']
         if user.check_password(password):
             User.objects.get(id=user.id).delete()
-            if Cart.objects.filter(user_id=user.id).exists():
-                Cart.objects.filter(user_id=user.id).delete()
-            if ProfileInfo.objects.filter(user_id=user.id).exists():
-                ProfileInfo.objects.get(user_id=user.id).delete()
-            if Address.objects.filter(user_id=user.id).exists():
-                Address.objects.filter(user_id=user.id).delete()
-            if Card.objects.filter(user_id=user.id).exists():
-                Card.objects.filter(user_id=user.id).delete()
+            Cart.objects.get(id=user.id).delete()
+            ProfileInfo.objects.get(id=user.id).delete()
+            Address.objects.get(id=user.id).delete()
+            Card.objects.get(id=user.id).delete()
             messages.success(request, "account deactivated")
             return redirect("products:index")
         else:
