@@ -1,6 +1,0 @@
-{% autoescape off %}
-Hi {{ user.username }}, Please click on the Accept button to confirm your registration,
-http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
-{% include 'login.html' %}
-{% endautoescape %}
-    

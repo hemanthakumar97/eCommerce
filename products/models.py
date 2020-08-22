@@ -83,6 +83,8 @@ class Laptop(models.Model):
     lithium_energy_battery_content = models.CharField(max_length=255, blank=True, null=True)
     included_components = models.CharField(max_length=255, default="Laptop, Battery, AC Adapter, User Guide, Manuals", blank=True, null=True)
     warrenty = models.CharField(max_length=255, default="1 Year", blank=True, null=True)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return self.title
@@ -106,6 +108,9 @@ class Sensor(models.Model):
     property_1 = models.TextField(blank=True, null=True)
     property_2 = models.TextField(blank=True, null=True)
     property_3 = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
 
     def __str__(self):
         return self.title
@@ -129,6 +134,8 @@ class ElectronicComponent(models.Model):
     property_1 = models.TextField(blank=True, null=True)
     property_2 = models.TextField(blank=True, null=True)
     property_3 = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return self.title
@@ -173,6 +180,9 @@ class Product(models.Model):
     sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE, blank=True, null=True)
     electronic_component = models.ForeignKey(ElectronicComponent, on_delete=models.CASCADE, blank=True, null=True)
     seller = models.ForeignKey(Seller, on_delete=models.CASCADE, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     
     def __str__(self):
         return self.title

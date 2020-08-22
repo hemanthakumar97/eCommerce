@@ -13,8 +13,9 @@ urlpatterns = [
     path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/', 
             views.activate, name='activate'),
     path('forgot_password/', views.forgot_password, name='forgot_password'),
-    path('new_password/', views.new_password, name='new_password'),
+    path('new_password/<str:trans_id>', views.new_password, name='new_password'),
     path('change_password/', views.change_password, name='change_password'),
+    path('verify_otp/<str:trans_id>/', views.verify_otp, name='verify_otp'),
     path('deactivate/', views.deactivate, name='deactivate'),
 ]
 

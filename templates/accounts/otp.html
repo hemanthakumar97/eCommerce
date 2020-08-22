@@ -27,16 +27,14 @@ Forgot Password
     <div class="mid-box">
         <form class="signup" style="height: 55%; padding-bottom:385px;" method="POST"><br>
         {% csrf_token %}
-            <h1>Forgot Password</h1>
-            {% include "partials/_alerts.html" %}
-            <p>Email</p>
-            <input type="text" placeholder="Email" name='email' required><br><br>
+            <h1>Verify OTP</h1>
+            {% include 'partials/_alerts.html' %}
+            <p> Enter OTP</p>
+            <input type="text" placeholder="OTP" name='otp' required><br><br>
             <div class="buttons">
                 <input type="submit" value="Submit">
                 <input type="submit" value="Cancel">    
             </div>
-            <!-- <button style="float: right;">Cancel</button><br><br><br> -->
-            <br><span><a href="{% url 'accounts:login' %}">Login</a></span>
         </form>
     </div>
     

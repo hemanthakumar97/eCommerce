@@ -1,21 +1,45 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import login, authenticate
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string, get_template
 from .tokens import account_activation_token
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponse
 from django.contrib.auth import get_user_model
-import math, random 
+import math, random
+import uuid
 from user_profile.models import *
+from .models import *
 from cart.models import Cart
 from django.contrib import messages
 from .forms import SignupForm
+
+
+# Generate OTP
+def generate_otp():
+    digits = "0123456789"
+    OTP = ""
+    for i in range(6):
+        OTP += digits[math.floor(random.random() * 10)]
+    trans_id = uuid.uuid4().hex[:15]
+    return OTP,trans_id
+
+# Verify OTP
+def verify_otp(request, trans_id):
+    if request.method=="POST":
+        otp = request.POST['otp']
+        if EmailOTP.objects.filter(trans_id=trans_id, otp=otp).exists():
+            return HttpResponseRedirect(reverse('accounts:new_password', kwargs={"trans_id":trans_id}))
+        else:
+            messages.error(request, "wrong otp")
+            return HttpResponseRedirect(reverse('accounts:verify_otp', kwargs={"trans_id":trans_id}))
+    return render(request, 'accounts/otp.html')
 
 
 def signup(request):
@@ -97,14 +121,45 @@ def logout(request):
     return redirect('products:index')
 
 def forgot_password(request):
+    if request.method=="POST":
+        email = request.POST['email']
+        if User.objects.filter(email=email).exists():
+            user = User.objects.get(email=email)
+            otp, trans_id = generate_otp()
+            EmailOTP.objects.create(user=user, otp=otp, trans_id=trans_id)
+            mail_subject = 'OTP to reset password.'
+            message = render_to_string('email_otp.html', {
+                        'user': user,
+                        'otp':otp,
+                    })
+            to_email = email
+            email = EmailMultiAlternatives(mail_subject, message, to=[to_email])
+            email.attach_alternative(message, "text/html")
+            email.send()
+
+            return HttpResponseRedirect(reverse('accounts:verify_otp', kwargs={"trans_id":trans_id}))
+        else:
+            messages.error(request, "user is not registered")
     return render(request, "accounts/forgot_password.html")
 
 
-def new_password(request):
-    if user.is_authenticated:
-        return render(request, 'accounts/new_password.html')
-    else:
-        return redirect("accounts:login")
+def new_password(request, trans_id):
+    if request.method=="POST":
+        password = request.POST['password']
+        password2 = request.POST['password2']
+        if password==password2:
+            user = EmailOTP.objects.get(trans_id=trans_id).user_id
+            user = User.objects.get(id=user)
+            EmailOTP.objects.get(trans_id=trans_id).delete()
+            user.set_password(password)
+            user.save()
+            messages.success(request, "Password changed succesfully")
+            return redirect("accounts:login")
+        else:
+            messages.error(request, "Passwords must be same")
+            return HttpResponseRedirect(reverse('accounts:new_password', kwargs={"trans_id":trans_id}))
+    return render(request, 'accounts/new_password.html')
+
 
 def change_password(request):
     user = request.user
@@ -161,20 +216,22 @@ def signup1(request):
         form = SignupForm(request.POST)
         if form.is_valid():
 
-            # check mobile number is already registered or not
             first_name = form.cleaned_data.get('first_name')
             last_name = form.cleaned_data.get('last_name')
             mobile = form.cleaned_data.get('mobile')
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
-            if ProfileInfo.objects.filter(mobile=mobile).exists():
-                messages.error(request, "user already registed with this number {}".format(mobile))
-                return render(request,"accounts/signup1.html", context={"form": form})
 
             # check email is already registered or not
             if User.objects.filter(email=email).exists():
                 messages.error(request, "user already registed with this email {}".format(email))
                 return render(request,"accounts/signup1.html", context={"form": form})
+
+            # check mobile number is already registered or not
+            if ProfileInfo.objects.filter(mobile=mobile).exists():
+                messages.error(request, "user already registed with this number {}".format(mobile))
+                return render(request,"accounts/signup1.html", context={"form": form})
+
             user = User.objects.create_user(username=email, email=email, password=password, first_name=first_name, last_name=last_name)
             user.is_active = False
             user.save()
