@@ -10,7 +10,10 @@
     list-style: none;
     box-sizing: border-box;
 }
-
+textarea {
+    /* resize: vertical; */
+    height: 100px;
+}
 .cards p{
     margin:10px;
 }
@@ -254,7 +257,7 @@ form input[name='cvv']{
 
     <div>
         <div class="mid-box" id ='personal_info'>
-            <form action="#" method="POST"><br>
+            <form method="POST"><br>
             {% csrf_token %}
                 <h1>Personal Information</h1>
                 <input type="text" placeholder="First Name" name="first_name" id='pi' value="{{user_info.first_name}}" required>
@@ -276,11 +279,8 @@ form input[name='cvv']{
                 value="{{profile_info.mobile}}"><br>
                 <div class="buttons">
                     <input type="submit" value="Save" name='pers_info'>
-                    <!-- <button type="cancel">Cancel</button>  -->
-                    <!-- <input style="margin-left: 50px;" type="submit" name="cancel" value="cancel" onclick="history.go(-1)"/>    -->
                     <input type="reset" onclick="cancel()" value="Cancel"> 
                 </div>
-                <!-- <input type="submit" name='Save'> -->
             </form><br>
             <a href="{% url 'accounts:change_password' %}">Change Password</a><br>
             <a href="{% url 'accounts:deactivate' %}">Deactivate Account</a>
@@ -299,17 +299,17 @@ form input[name='cvv']{
                     <span><i class="fa fa-plus inline fr"></i></span>
                 </div>
             <div id="add_addr">
-                    <input type="text" placeholder="First Name" name="first_name" id='pi' required>
+                {{form}}
+                    <!-- <input type="text" placeholder="First Name" name="first_name" id='pi' required>
                     <input type="text" placeholder="Last Name" name="last_name" id='pi'>
                     <input type="text" placeholder="Mobile Number" name='mobile' id='pi' required>
                     <input type="text" placeholder="Locality" name='locality' id='pi' required><br>
                     <textarea style='height:100px;' rows=5 placeholder="Address (Area and Street)" name='area' required></textarea><br>
                     <input type="text" placeholder="City/Town" name='town' required>
                     <input placeholder="Pincode" name='pin' required>    
-                    <input type="text" placeholder="Landmark (optional)" name='landmark' id='pi'><br>
+                    <input type="text" placeholder="Landmark (optional)" name='landmark' id='pi'><br> -->
                     <div class="buttons">
                         <input type="submit" value="Save" name='address'> 
-                        <!-- <button onclick="cancel()">Cancel</button>     -->
                         <input type="reset" onclick="cancel()" value="Cancel"> 
                     </div>
                 </div><br>
@@ -319,7 +319,7 @@ form input[name='cvv']{
                     <span><i class="fa fa-edit inline fr"></i></span>
                     <p>{{address.locality}}</p>
                     <p>{{address.area}}</p>
-                    <p>{{address.city}}-{{address.pin}}</p>
+                    <p>{{address.city}}-{{address.pin}}.</p>
                     <p>Mob: {{address.mobile}}</p>
                     {% if address.landmark %}
                     <p>Landmark: {{address.landmark}}</p>

@@ -6,6 +6,11 @@
     /* box-sizing: border-box; */
 }
 
+textarea {
+    /* resize: vertical; */
+    height: 100px;
+}
+
 body{
     background:#eeeeee;
     font-family: 'Segoe UI';

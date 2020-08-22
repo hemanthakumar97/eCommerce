@@ -11,11 +11,11 @@ from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponse
 from django.contrib.auth import get_user_model
-# from account.models import *
 import math, random 
 from user_profile.models import *
 from cart.models import Cart
 from django.contrib import messages
+from .forms import SignupForm
 
 
 def signup(request):
@@ -92,9 +92,9 @@ def login(request):
 
 
 def logout(request):
-        auth.logout(request)
-        messages.success(request,'Loged out successfully')
-        return redirect('products:index')
+    auth.logout(request)
+    messages.success(request,'Loged out successfully')
+    return redirect('products:index')
 
 def forgot_password(request):
     return render(request, "accounts/forgot_password.html")
@@ -154,3 +154,45 @@ def deactivate(request):
         return render(request, 'accounts/deactivate.html')
     else:
         return redirect("accounts:login")
+
+
+def signup1(request):
+    if request.method=="POST":
+        form = SignupForm(request.POST)
+        if form.is_valid():
+
+            # check mobile number is already registered or not
+            first_name = form.cleaned_data.get('first_name')
+            last_name = form.cleaned_data.get('last_name')
+            mobile = form.cleaned_data.get('mobile')
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+            if ProfileInfo.objects.filter(mobile=mobile).exists():
+                messages.error(request, "user already registed with this number {}".format(mobile))
+                return render(request,"accounts/signup1.html", context={"form": form})
+
+            # check email is already registered or not
+            if User.objects.filter(email=email).exists():
+                messages.error(request, "user already registed with this email {}".format(email))
+                return render(request,"accounts/signup1.html", context={"form": form})
+            user = User.objects.create_user(username=email, email=email, password=password, first_name=first_name, last_name=last_name)
+            user.is_active = False
+            user.save()
+            ProfileInfo.objects.create(user=user, mobile=mobile)
+            current_site = get_current_site(request)
+            mail_subject = 'Activate your account.'
+            message = render_to_string('email_temp_html.html', {
+                        'user': user,
+                        'domain': current_site.domain,
+                        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                        'token': account_activation_token.make_token(user),
+                    })
+            to_email = email
+            email = EmailMultiAlternatives(mail_subject, message, to=[to_email])
+            email.attach_alternative(message, "text/html")
+            email.send()
+            messages.success(request, 'Verify your email and login')
+            return render(request, 'accounts/login.html')
+
+    form = SignupForm()
+    return render(request, 'accounts/signup1.html', context={'form':form})

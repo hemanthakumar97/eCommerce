@@ -1,0 +1,29 @@
+{% extends "accounts/base.html" %}
+
+{% block styles %}
+<style>
+    .mid-box span::before{
+        content: "Already have an account? ";
+    }
+</style>
+{% endblock  %}
+
+{% block content %}
+
+<div class="mid-box"><br>
+
+    <form method="POST">
+        {% csrf_token %}
+        <h1 align='center'>Create Account</h1>
+        {% include "partials/_alerts.html" %}
+        {{form}}
+        <input type="submit" value="Signup">
+    </form>
+    <div class="gap"><br></div>
+    <div class='devider'>
+        <span><a href="{% url 'accounts:login' %}">Login</a></span>
+    </div>
+
+</div>
+
+{% endblock %}

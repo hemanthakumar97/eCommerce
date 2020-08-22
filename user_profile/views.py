@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib import messages
+from .forms import *
 
 
 
@@ -26,22 +27,24 @@ def my_profile(request):
             return redirect("user_profile:profile")
 
         if "address" in request.POST:
-            address = Address.objects
-            first_name = request.POST['first_name']
-            last_name = request.POST['last_name']
-            mobile = request.POST['mobile']
-            locality = request.POST['locality']
-            area = request.POST['area']
-            town = request.POST['town']
-            pin = request.POST['pin']
-            landmark = request.POST['landmark']
-            try:
-                address.create(user=user, first_name=first_name, last_name=last_name, mobile=mobile,
-                locality=locality, area=area, city=town, pin=pin, landmark=landmark)
-                messages.success(request,"Address added succesfully")
-            except:
-                messages.error(request,"Something is wrong")
-            return redirect("user_profile:profile")
+            form = AddressForm(request.POST)
+            if form.is_valid():
+                address = Address.objects
+                first_name = form.cleaned_data.get('first_name')
+                last_name = form.cleaned_data.get('last_name')
+                mobile = form.cleaned_data.get('mobile')
+                locality = form.cleaned_data.get('locality')
+                area = form.cleaned_data.get('area')
+                town = form.cleaned_data.get('town')
+                pin = form.cleaned_data.get('pin')
+                landmark = form.cleaned_data.get('landmark')
+                try:
+                    address.create(user=user, first_name=first_name, last_name=last_name, mobile=mobile,
+                    locality=locality, area=area, city=town, pin=pin, landmark=landmark)
+                    messages.success(request,"Address added succesfully")
+                except:
+                    messages.error(request,"Something is wrong")
+                return redirect("user_profile:profile")
 
         if "add_card" in request.POST:
             card = Card.objects
@@ -65,10 +68,12 @@ def my_profile(request):
     profile_info = ProfileInfo.objects.get(user=user)
     addresses = Address.objects.filter(user=user)
     cards = Card.objects.filter(user=user)
+    form = AddressForm()
     context = {
                 "user_info":user_info,
                 "profile_info":profile_info,
                 "addresses":addresses,
                 "cards":cards,
+                "form":form,
             }
     return render(request, 'profile/my_profile.html', context)
