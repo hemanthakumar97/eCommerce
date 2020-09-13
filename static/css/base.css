@@ -283,6 +283,15 @@ h1{
     .cat_web ul li{
         margin: 0 20px;
     }
+
+    .category{
+        zoom:70%;
+    }
+
+    .category ul li{
+        margin:0 10px;
+    }
+
 }
 @media (max-width: 600px){
     .search-box input:focus{

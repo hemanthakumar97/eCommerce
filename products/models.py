@@ -187,3 +187,14 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+class Banner(models.Model):
+    banner1 = models.ImageField(upload_to='banner/', blank=True)
+    banner2 = models.ImageField(upload_to='banner/', blank=True)
+    banner3 = models.ImageField(upload_to='banner/', blank=True)
+    banner4 = models.ImageField(upload_to='banner/', blank=True)
+    banner5 = models.ImageField(upload_to='banner/', blank=True)
+    banner6 = models.ImageField(upload_to='banner/', blank=True)
+    banner7 = models.ImageField(upload_to='banner/', blank=True)
+    banner8 = models.ImageField(upload_to='banner/', blank=True)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)

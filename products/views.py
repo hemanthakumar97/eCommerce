@@ -8,7 +8,9 @@ from django.contrib.auth.models import User
 
 
 def index(request):
-    return render(request, "index.html")
+    banners = Banner.objects.all().order_by("-created_at").first()
+    laptops = Product.objects.filter(category_id=2)
+    return render(request, "index.html", context={'banners':banners, 'laptops':laptops})
 
 def laptops(request):
     laptops = Product.objects.filter(category_id=2)

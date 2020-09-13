@@ -14,9 +14,26 @@
 img{
     margin-top:15px;
 }
+
+@media (max-width: 700px){
+    .category{
+        zoom:70%;
+        margin:90px 0 0 0;
+        margin-bottom:20px;
+    }
+
+    .category ul li{
+        margin:0 10px;
+    }
+
+    h1{
+        margin:0 0 20px 0;
+    }
+}
+
 @media (max-width: 500px){
     .category{
-        display: none;
+        {% comment %} display: none; {% endcomment %}
     }
 }
 {% endblock %}
