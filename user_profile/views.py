@@ -77,3 +77,23 @@ def my_profile(request):
                 "form":form,
             }
     return render(request, 'profile/my_profile.html', context)
+
+
+def del_card(request, id):
+    # user = requesst.user
+    card = Card.objects.get(id=id)
+    card.delete()
+    return redirect("user_profile:profile")
+
+
+def del_addr(request, id):
+    # user = requesst.user
+    addr = Address.objects.get(id=id)
+    addr.delete()
+    return redirect("user_profile:profile")
+
+
+def edit_addr(request, id):
+    # user = requesst.user
+    addr = Address.objects.get(id=id)
+    return redirect("user_profile:profile", {'addr':addr})

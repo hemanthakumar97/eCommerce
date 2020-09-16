@@ -1,0 +1,103 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block styles %}
+<style>
+    form{
+        font-weight: normal;
+        padding: 10px 30px;    
+        width: 60%;
+        margin-top: 20px;
+        background: white;
+        margin-left: 20%;
+        line-height: 40px;
+        font-family: Arial,sans-serif;
+        filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.4));
+    }
+
+    .address{
+        display: grid;
+        grid-template-columns: 10% 90%;
+        border: 1px solid black;
+        padding:0 10px;
+        border-radius: 10px;
+        line-height: 25px;
+        margin: 10px;
+    }
+        
+    form input[type=radio], i, img{
+        margin-right: 10px;
+    }
+    
+    form button{
+        color: white;
+        font-weight: bold;
+        border-radius: 20px;
+        margin: 13px 35%;
+        padding: 10px 10px;
+        width: 20%;
+        border: 2px solid #07CB79;
+        background: black;
+        outline: none;
+        box-shadow: 0 0 5px black;
+    }
+    
+    form button:hover{
+        background: #07CB79;
+        border: 2px solid black;
+        box-shadow: 0 0 5px black;
+    }
+    
+    form h3, form h2{
+        margin-top: 20px;
+        margin-bottom: -10px;
+    }
+    
+    @media (max-width:1024px){
+        form{
+            zoom:80%;
+            width: 90%;
+            margin:5%;
+        }
+    
+        .icon-container{
+            zoom:60%;
+            padding-left: 25px;
+        }
+        form button{
+            width:120px;
+            }
+    }
+    
+    @media (max-width:380px){
+        form{
+            zoom:60%;
+         }
+    }
+    
+</style>
+{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <h1 align='center' style="margin-top: 10px; margin-bottom:15px;">Shipping Address</h1>
+        {% for address in addresses %}
+        <div class="address">
+            <div><br>
+                <input type="radio" name="address" value="{{address.id}}">
+            </div>
+            <div>
+                <h4 class="inline">{{address.first_name}} {{address.last_name}}</address></h4>
+                <p>{{address.locality}}</p>
+                <p>{{address.area}}</p>
+                <p>{{address.city}}-{{address.pin}}.</p>
+                <p>Mob: {{address.mobile}}</p>
+                {% if address.landmark %}
+                <p>Landmark: {{address.landmark}}</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        <input type="submit" value="Continue">
+    </form><br><br><br>
+{% endblock %}

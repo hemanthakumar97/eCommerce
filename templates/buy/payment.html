@@ -1,0 +1,92 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block styles %}
+<style>
+    form{
+        font-weight: normal;
+        padding: 10px 30px;    
+        width: 60%;
+        margin-top: 20px;
+        background: white;
+        margin-left: 20%;
+        line-height: 40px;
+        font-family: Arial,sans-serif;
+        filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.4));
+    }
+        
+    form input[type=radio], i, img{
+        margin-right: 10px;
+    }
+    
+    form button{
+        color: white;
+        font-weight: bold;
+        border-radius: 20px;
+        margin: 13px 35%;
+        padding: 10px 10px;
+        width: 20%;
+        border: 2px solid #07CB79;
+        background: black;
+        outline: none;
+        box-shadow: 0 0 5px black;
+    }
+    
+    form button:hover{
+        background: #07CB79;
+        border: 2px solid black;
+        box-shadow: 0 0 5px black;
+    }
+    
+    form h3, form h2{
+        margin-top: 20px;
+        margin-bottom: -10px;
+    }
+    
+    @media (max-width:1024px){
+        form{
+            zoom:80%;
+            width: 90%;
+            margin:5%;
+        }
+    
+        .icon-container{
+            zoom:60%;
+            padding-left: 25px;
+        }
+        form button{
+            width:120px;
+            }
+    }
+    
+    @media (max-width:380px){
+        form{
+            zoom:60%;
+         }
+    }
+    
+</style>
+{% endblock %}
+
+{% block content %}
+    <form method="POST" class='payment'>
+        {% csrf_token %}
+        <h1 align='center' style="margin-top: 10px; margin-bottom:15px;">Select a payment method</h1>
+        <h2>Your saved credit and debit cards</h2>
+        <input  type="radio" name="payment_mode"><b>Bank Name</b> ending in 1047 <br>
+        <h3>Another payment method</h3>
+        <input type="radio" name="payment_mode" value="Debit/Credit Card"><b >Add Debit/Credit/ATM Card</b><br>
+        <div class="icon-container">
+            <i class="fa fa-cc-visa fa-3x" style="margin-left: 25px; color:navy;"></i>
+            <img src="{% static 'images/paymnet_icons/mastercard.png' %}" height="40px" alt="">
+            <img src="{% static 'images/paymnet_icons/mastrocard.png' %}" height="40px" alt="">
+            <img src="{% static 'images/paymnet_icons/american-express.png' %}" height="40px" alt="">
+            <img src="{% static 'images/paymnet_icons/diners-club.png' %}" height="40px" alt="">
+            <i class="fa fa-cc-discover fa-3x" style="color:orange;"></i>
+            <img src="{% static 'images/paymnet_icons/Bajaj-Finserv-Logo1.png' %}" height="40px" alt="">
+        </div>
+        <input type="radio" name="payment_mode" value="Net Banking"><b>Net Banking</b><br>
+        <input type="radio" name="payment_mode" value="EMI"><b>EMI</b><br>
+        <input type="radio" name="payment_mode" value="POD"><b>Pay on Delivery</b><br>
+        <input type="submit" value="Continue">
+    </form><br><br><br>
+{% endblock %}

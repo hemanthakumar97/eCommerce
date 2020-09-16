@@ -17,7 +17,7 @@ class Address(models.Model):
 
 
     def __str__(self):
-        return self.user.username
+        return self.city
 
 class Card(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
@@ -31,7 +31,7 @@ class Card(models.Model):
 
 
     def __str__(self):
-        return self.user.username
+        return self.name
 
 class ProfileInfo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)

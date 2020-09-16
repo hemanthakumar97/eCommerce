@@ -10,6 +10,10 @@
     list-style: none;
     box-sizing: border-box;
 }
+
+span a{
+    color:black;
+}
 textarea {
     /* resize: vertical; */
     height: 100px;
@@ -316,7 +320,8 @@ form input[name='cvv']{
                 {% for address in addresses %}
                 <div class="addr">
                     <h4 class="inline">{{address.first_name}} {{address.last_name}}</address></h4>
-                    <span><i class="fa fa-edit inline fr"></i></span>
+                    <span><a href="{% url 'user_profile:edit_addr' address.id %}"><i class="fa fa-edit inline fr"></i></a></span>
+                    <span><a href="{% url 'user_profile:del_addr' address.id %}"><i class="fa fa-trash inline fr"></i></a></span><br>
                     <p>{{address.locality}}</p>
                     <p>{{address.area}}</p>
                     <p>{{address.city}}-{{address.pin}}.</p>
@@ -382,7 +387,7 @@ form input[name='cvv']{
                     {% for card in cards %}
                     <div class="cards addr">
                         <h4 class="inline">State Bank of India Debit Card</h4>
-                        <span><i class="fa fa-trash inline fr"></i></span><br>
+                        <span><a href="{% url 'user_profile:del_card' card.id %}"><i class="fa fa-trash inline fr"></i></a></span><br>
                         <p class="inline"><b>Card No: </b>{{card.card_no}}</p><br>
                         <p class="inline"><b>Name: </b>{{card.name}}</p><br>
                         <p class="inline"><b>Expiry Date: </b>{{card.expiry_month}}</p>
