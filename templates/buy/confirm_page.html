@@ -1,0 +1,70 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block styles %}
+<style>
+    .confirm{
+        font-weight: normal;
+        padding: 10px 30px;    
+        width: 60%;
+        margin-top: 20px;
+        background: white;
+        margin-left: 20%;
+        line-height: 40px;
+        font-family: Arial,sans-serif;
+        filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.4));
+    }
+
+    h1,h2, h3{
+        margin-top: 10px; 
+        margin-bottom:15px;
+        font-weight: normal;
+    }
+
+    .address{
+        border: 1px solid black;
+        padding:0 10px;
+        border-radius: 10px;
+        line-height: 25px;
+        margin: 10px;
+    }
+    
+    @media (max-width:1024px){
+        .confirm{
+            zoom:80%;
+            width: 90%;
+            margin:5%;
+        }
+    
+        .icon-container{
+            zoom:60%;
+            padding-left: 25px;
+        }
+    }
+    
+    @media (max-width:380px){
+        .confirm{
+            zoom:60%;
+         }
+    }
+    
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="confirm">
+    <h1 align='center'>Thank you</h1>
+    <h2>Order Confirmed</h1>
+    <div class="address">
+            <h4 class="inline">{{address.first_name}} {{address.last_name}}</address></h4>
+            <p>{{address.locality}}</p>
+            <p>{{address.area}}</p>
+            <p>{{address.city}}-{{address.pin}}.</p>
+            <p>Mob: {{address.mobile}}</p>
+            {% if address.landmark %}
+            <p>Landmark: {{address.landmark}}</p>
+            {% endif %}
+    </div>
+
+    <h3>Expected Delivery: <b>Monday</b>   </h3>
+</div>
+{% endblock %}
