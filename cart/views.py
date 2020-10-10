@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import Cart
+from cart.models import Cart
 from django.http import HttpResponse
 from django.contrib import messages
 from products.models import Product
+from django.contrib.auth.decorators import login_required
  
 def cart(request):
     user = request.user
@@ -20,6 +21,7 @@ def cart(request):
         }
     return render(request, 'cart/cart.html', context)
 
+# @login_required(login_url='/login/')
 def add_cart(request, id):
     user = request.user
     product=Product.objects.get(id=id)

@@ -22,13 +22,14 @@
 <body>
 
     <div class="search-box">
-        <form action="{% url 'products:index' %}">
-            <input type="text" placeholder="Search">
-            <!-- <button><i class="fa fa-search"></i></button> -->
+        <form method="POST" action="{% url 'search' %}">
+        {% csrf_token %}
+            <input type="text" placeholder="Search" name="inp" 
+            {% if search_input %} value={{search_input}} {% endif %}>
         </form>
     </div>
 
-    <nav>
+    <nav class="1">
         <input type="checkbox" id='check'>
         <label for="check">
             <i class="fa fa-bars" id='menu'></i>

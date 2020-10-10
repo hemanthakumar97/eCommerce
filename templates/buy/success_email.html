@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+            color: white;
+            margin:50px;
+            line-height: 10px;
+        }
+        hr{
+            margin-top: -10px;
+        }
+        
+        .order_no{
+            float: right;
+            line-height: 3px;
+        }
+
+        .product, .price{
+            display: grid;
+            grid-template-columns: 20% 50% 20%;
+        }
+
+        @media (max-width: 500px){
+            body{
+                zoom:80%;
+            }
+        };
+
+    </style>
+</head>
+<body>
+    <h1>SHOPIFY</h1><hr>
+    <div class="order_no">
+        <h3>Order Confirmation</h3>
+        <p>Order #{{order_no}}</p>
+    </div><br>
+
+    <h2>Hello {{user.profile.first_name}}</h2>
+    <p>Thank you for order. We'll send a confirmation when your order ships. Your estimated delivery date is indicated below.</p>
+<br>
+    <div class="order_details">
+        <h2>Order Details</h2><hr>
+        <p style="line-height: 0;">Order #{{order_no}}</p>
+        <p>Placed on {{created_at}}</p>
+
+        <div class="product">
+            <div>
+                <img src="" alt="">
+            </div>
+            <div>
+                <p>title{{product.title}}</p>
+            </div>
+            <div>
+                <p>Rs.{{product.price}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="price">
+        <div>
+        </div>
+        <div style="float: right;">
+            <p>Item Subtotal:</p>
+            <p>Shipping & Handling:</p>
+            <p>Promotion Applied:</p>
+            <b><p>Order Total:</p></b>
+            <p>Payment Pending:</p>
+        </div>
+        <div>
+            <p>Rs.{{product.price}}</p>
+            <p>Rs.{{product.price}}</p>
+            <p>Rs.{{product.price}}</p>
+            <b><p>Rs.{{product.price}}</p></b>
+            <p>Rs.{{product.price}}</p>
+        </div>
+    </div>
+</body>
+</html>

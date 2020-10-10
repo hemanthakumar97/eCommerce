@@ -40,93 +40,35 @@ img{
 
 {% block content %}
 
-{% if laptops %}
-<h1>Laptops:</h1>
-<div class="laptops" align="center">
-{% for laptop in laptops %}
-{% if laptop.is_published %}
-    <a href="{% url 'products:product' laptop.id %}"><div class="products">
-        <img src="{{laptop.main_image.url}}" alt="{{laptop.title}}">
-        <div class='details' align='center'>            
-            <h3 style="margin-bottom: 8px;">{{laptop.title}}</h3>
-            <h2>Rs.{{laptop.deal_price}}</h2>
-            <!-- <fieldset class="starability-result mx-auto" data-rating="{{ laptop.rating }}">
-                Rated: {{ laptop.rating|add:-5 }} Stars
-            </fieldset>
-            {% if laptop.rating > 0 %}1{% endif %} -->
-            <p>{% if laptop.is_nocost %} No Cost EMI available. {% endif %}</p>
-        </div>
-    </a>
-</div>
+{% if products %}
+{% if search_input %}
+<h1>Searched results</h1>
+{% else %}}
+<h1>{{products.first.category}}:</h1>
 {% endif %}
-{% endfor %}
-{% endif %}
-
-
-{% if mobiles %}
-<h1>Mobiles:</h1>
 <div class="mobiles" align="center">
-{% for mobile in mobiles %}
-{% if mobile.is_published %}
-<a href="{% url 'products:product' mobile.id %}"><div class="products">
-    <img src="{{mobile.main_image.url}}" alt="{{mobile.title}}">
+{% for product in products %}
+{% if product.is_published %}
+<a href="{% url 'products:product' product.id %}"><div class="products">
+    <img src="{{product.main_image.url}}" alt="{{product.title}}">
     <div class='details' align='center'>            
-        <h3 style="margin-bottom: 8px;">{{mobile.title}}</h3>
+        <h3 style="margin-bottom: 8px;">{{product.title}}</h3>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star"></span>
-        <h2>Rs.{{mobile.deal_price}}</h2>
-        <p>{% if mobile.is_nocost %} No Cost EMI available. {% endif %}</p>
+        <h2>Rs.{{product.deal_price}}</h2>
+        <p>{% if product.is_nocost %} No Cost EMI available. {% endif %}</p>
     </div>
 </a>
 </div>
 {% endif %}
 {% endfor %}
+{% else %}
+<h2 style="margin: 20px; font-weight:normal">No products are available</h2>
 {% endif %}
 
 
-{% if sensors %}
-<h1>Sensors:</h1>
-<div class="sensors" align="center">
-{% for sensor in sensors %}
-{% if sensor.is_published %}
-    <a href="{% url 'products:product' sensor.id %}"><div class="products">
-        <img src="{{sensor.main_image.url}}" alt="{{sensor.title}}">
-        <div class='details' align='center'>            
-            <h3 style="margin-bottom: 8px;">{{sensor.title}}</h3>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <h2>Rs.{{sensor.deal_price}}</h2>
-            <p>{% if sensor.is_nocost %} No Cost EMI available. {% endif %}</p>
-        </div>
-    </a>
-</div>
-{% endif %}
-{% endfor %}
-{% endif %}
-
-
-{% if electronic_components %}
-<h1>Electronic Component:</h1>
-<div class="electronic_component" align="center">
-{% for electronic_component in electronic_components %}
-{% if electronic_component.is_published %}
-    <a href="electronic_component"><div class="products">
-        <img src="{{electronic_component.main_image.url}}" alt="{{electronic_component.title}}">
-        <div class='details' align='center'>            
-            <h3 style="margin-bottom: 8px;">{{electronic_component.title}}</h3>
-            <h4>{{electronic_component.price}}</h4>
-            <p>{% if electronic_component.is_nocost %} No Cost EMI available. {% endif %}</p>
-        </div>
-    </a>
-</div>
-{% endif %}
-{% endfor %}
-{% endif %}
 
 {% endblock %}

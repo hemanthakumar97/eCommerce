@@ -80,9 +80,13 @@
 {% endblock %}
 
 {% block content %}
+
     <form method="POST">
         {% csrf_token %}
-        <h1 align='center' style="margin-top: 10px; margin-bottom:15px;">Shipping Address</h1>
+        <h1 style="margin-top: 10px; margin-bottom:5px;">Product</h1>
+        {% include "_product.html" %}
+        <br>
+        <h1 style="margin-bottom:5px;">Shipping Address</h1>
         <div class="address">
                 <h4 class="inline">{{address.first_name}} {{address.last_name}}</address></h4>
                 <p>{{address.locality}}</p>

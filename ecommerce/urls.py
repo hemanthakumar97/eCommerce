@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from search_components.views import search
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +24,6 @@ urlpatterns = [
     path('',include("cart.urls")),
     path('',include("user_profile.urls")),
     path('',include("buy.urls")),
+
+    path("search/", search, name="search")
 ]

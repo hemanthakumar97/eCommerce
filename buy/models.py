@@ -11,6 +11,7 @@ class Order(models.Model):
     card = models.ForeignKey(Card, on_delete=models.CASCADE, null=True)
     address = models.ForeignKey(Address, on_delete=models.CASCADE, null=True)
     payment_status = models.BooleanField(default=False, null=True)
+    confirm = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

@@ -53,7 +53,8 @@
 {% block content %}
 <div class="confirm">
     <h1 align='center'>Thank you</h1>
-    <h2>Order Confirmed</h1>
+    <h1>Order Confirmed</h1>    
+    <h2>Delivery Address</h2>
     <div class="address">
             <h4 class="inline">{{address.first_name}} {{address.last_name}}</address></h4>
             <p>{{address.locality}}</p>
@@ -65,6 +66,6 @@
             {% endif %}
     </div>
 
-    <h3>Expected Delivery: <b>Monday</b>   </h3>
-</div>
+    <h3>Expected Delivery: <b>Monday</b></h3>
+</div><br>
 {% endblock %}

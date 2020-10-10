@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="cart_item">
+        <div></div>
+            <div class="item_image"><img src="{{product.main_image.url}}" alt="{{product.title}}">
+            </div>
+        <div class="item_description">
+                <h2>{{product.title}}</h2>
+            <div class="item_price">
+                <h3>Rs.{{product.deal_price}}</h3> 
+                <del>Rs.{{product.mrp}}</del>  
+                <!-- <del>MRP</del> -->
+            </div>
+            <div class="rating">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+            </div>
+            <p>Qty: 1</p>
+            <p style="display:inline;">No cost EMI Available</p>
+        </div>
+        </div>
+</body>
+</html>

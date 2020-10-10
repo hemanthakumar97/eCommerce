@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from .models import *
 from cart.models import Cart
 import math
@@ -13,24 +13,24 @@ def index(request):
     return render(request, "index.html", context={'banners':banners, 'laptops':laptops})
 
 def laptops(request):
-    laptops = Product.objects.filter(category_id=2)
-    context = {'laptops':laptops,
+    products = Product.objects.filter(category_id=2)
+    context = {'products':products,
                 }
     return render(request, "products/categories.html", context)
 
 def mobiles(request):
-    mobiles = Product.objects.filter(category_id=1)
-    context = {'mobiles':mobiles}
+    products = Product.objects.filter(category_id=1)
+    context = {'products':products}
     return render(request, "products/categories.html", context)
 
 def sensors(request):
-    sensors = Product.objects.filter(category_id=3)
-    context = {'sensors':sensors}
+    products = Product.objects.filter(category_id=3)
+    context = {'products':products}
     return render(request, "products/categories.html", context)
 
 def electronic_components(request):
-    electronic_components = Product.objects.filter(category_id=4)
-    context = {'electronic_components':laptops}
+    products = Product.objects.filter(category_id=4)
+    context = {'products':products}
     return render(request, "products/categories.html", context)
 
 def rating(request, id):

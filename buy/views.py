@@ -9,7 +9,8 @@ def payment(request,id):
     if request.method=="POST":
         inp = request.POST['payment_mode']
         product = Product.objects.get(id=id)
-        Order.objects.create(user=user, product=product, payment_method=inp)
+        order = Order.objects.create(user=user, product=product, payment_method=inp)
+        request.session["order_id"] = order.id
         return redirect("buy:address")
     return render(request, "buy/payment.html")
 
@@ -18,17 +19,31 @@ def address(request):
     if request.method=="POST":
         id = request.POST['address']
         obj = Address.objects.get(id=id)
-        Order.objects.update(user=user, address=obj)
+        order_id = request.session["order_id"]
+        address = Order.objects.get(id=order_id)
+        address.address=obj
+        address.save()
         return redirect("buy:place_order")
     addresses = Address.objects.filter(user=user)
     return render(request, "buy/address.html",{"addresses":addresses})
 
 def place_order(request):
     if request.method=="POST":
+        order_id = request.session["order_id"]
+        order = Order.objects.get(id=order_id)
+        order.confirm=True
+        order.save()
         return redirect("buy:confirm_page")
-    address = Order.objects.get(id=5).address
-    return render(request, "buy/place_order.html",{"address":address})
+    order_id = request.session["order_id"]
+    buy = Order.objects.get(id=order_id)
+    product = buy.product
+    address = buy.address
+    return render(request, "buy/place_order.html",{"product":product ,"address":address})
 
 def confirm_page(request):
-    address = Order.objects.get(id=5).address
+    order_id = request.session["order_id"]
+    address = Order.objects.get(id=order_id).address
     return render(request,"buy/confirm_page.html",{"address":address})
+
+def email(request):
+    return render(request,"buy/success_email.html")

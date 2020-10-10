@@ -22,7 +22,7 @@
 <form action="">
     {% for cart_item in cart_items %}
         <div class="cart_item">
-        <div class="check_item"><input type="checkbox"></div>
+        <div></div>
         <a href="{% url 'products:product' cart_item.product.id %}">
             <div class="item_image"><img src="{{cart_item.product.main_image.url}}" alt="{{cart_item.product.title}}">
             </div></a>
