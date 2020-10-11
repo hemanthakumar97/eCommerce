@@ -1,0 +1,14 @@
+        <h1 style="margin-top: 10px; margin-bottom:5px;">Product</h1>
+        {% include "_product.html" %}
+        <br>
+        <h1 style="margin-bottom:5px;">Shipping Address</h1>
+        <div class="address">
+                <h4 class="inline">{{address.first_name}} {{address.last_name}}</address></h4>
+                <p>{{address.locality}}</p>
+                <p>{{address.area}}</p>
+                <p>{{address.city}}-{{address.pin}}.</p>
+                <p>Mob: {{address.mobile}}</p>
+                {% if address.landmark %}
+                <p>Landmark: {{address.landmark}}</p>
+                {% endif %}
+        </div>

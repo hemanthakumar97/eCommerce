@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from products.models import Product
 from user_profile.models import *
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 from .models import *
+from django.template.loader import render_to_string, get_template
+from django.contrib.auth.models import User
 
 
 def payment(request,id):
@@ -28,16 +31,25 @@ def address(request):
     return render(request, "buy/address.html",{"addresses":addresses})
 
 def place_order(request):
+    order_id = request.session["order_id"]
+    buy = Order.objects.get(id=order_id)
+    product = buy.product
+    address = buy.address
     if request.method=="POST":
         order_id = request.session["order_id"]
         order = Order.objects.get(id=order_id)
         order.confirm=True
         order.save()
+        mail_subject = 'Order Placed'
+        message = render_to_string('email_confirm.html', {
+                    'product': product,
+                    'address': address,
+                })
+        to_email = User.objects.get(id=request.user.id).email
+        email = EmailMultiAlternatives(mail_subject, message, to=[to_email])
+        email.attach_alternative(message, "text/html")
+        email.send()
         return redirect("buy:confirm_page")
-    order_id = request.session["order_id"]
-    buy = Order.objects.get(id=order_id)
-    product = buy.product
-    address = buy.address
     return render(request, "buy/place_order.html",{"product":product ,"address":address})
 
 def confirm_page(request):
@@ -48,6 +60,3 @@ def confirm_page(request):
 def my_orders(request):
     orders = Order.objects.filter(user=request.user)
     return render(request,"buy/my_orders.html",context={"orders":orders})
-
-def email(request):
-    return render(request,"buy/success_email.html")
