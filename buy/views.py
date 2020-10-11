@@ -45,5 +45,9 @@ def confirm_page(request):
     address = Order.objects.get(id=order_id).address
     return render(request,"buy/confirm_page.html",{"address":address})
 
+def my_orders(request):
+    orders = Order.objects.filter(user=request.user)
+    return render(request,"buy/my_orders.html",context={"orders":orders})
+
 def email(request):
     return render(request,"buy/success_email.html")

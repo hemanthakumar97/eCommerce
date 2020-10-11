@@ -43,9 +43,9 @@
                 {% endif %}
                 <div class="dropdown-content">
                   <a href="{% url 'user_profile:profile' %}">My Profile</a>
-                  <a href="my_orders.html">My Orders</a>
+                  <a href="{% url 'buy:my_orders' %}">My Orders</a>
                   <a href="#">Coupons</a>
-                  <a href="wishlist.html">Whishlist</a>
+                  <a href="#">Whishlist</a>
                   <a href="#">Notifications</a>
                   <a href="{% url 'accounts:logout' %}">Logout</a>
                 </div>
@@ -60,9 +60,9 @@
                 <br>
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'user_profile:profile' %}">Hello, {{user.first_name}}</a></li>
-                <li><a href="my_orders.html">My Orders</a></li>
+                <li><a href="{% url 'buy:my_orders' %}">My Orders</a></li>
                 <li><a href="#">Coupons</a></li>
-                <li><a href="wishlist.html">Wishlist</a></li>
+                <li><a href="#">Wishlist</a></li>
                 <li><a href="#">Notifications</a></li>
                 <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
                 {% endif %}

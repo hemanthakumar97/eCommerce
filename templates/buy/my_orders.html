@@ -1,0 +1,72 @@
+{% extends "accounts/base.html" %}
+
+{% block styles %}
+  <style>
+    .cart_item{
+        grid-template-columns: 150px 400px 300px 200px;
+    }    
+    .mob{
+        display: none;
+    }
+    @media (max-width:1150px){
+        .cart_item{
+            zoom: 80%;
+        }
+    
+        
+    }
+    
+    @media (max-width:800px){
+        .cart_item{
+            zoom: 70%;
+        }
+    }
+    
+    @media (max-width:700px){
+        .cart_item{
+            zoom: 60%;
+        }
+        .mob{
+            display: grid;
+        } 
+        .web{
+            display: none;
+        }       
+    }
+    
+    @media (max-width:600px){
+        .cart_item{
+            zoom: 70%;
+        }
+    }
+    @media (max-width:350px){
+        .cart_item{
+            zoom: 50%;
+        }
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+<h1 style="margin: 10px 20px;">My Orders</h1>
+{% for order in orders %}
+<div class="cart_item">
+    <a href="{% url 'products:product' order.product.id %}"> 
+    <div class="item_image"><img src="{{order.product.main_image.url}}" alt="{{order.product.title}}"></div>
+    </a>
+    <div class="item_description">
+            <h2>{{order.product.title}}</h2>
+        <div class="item_price">
+            <h3>Rs.{{order.product.deal_price}}</h3> 
+        </div>
+        <div class='mob'>
+            Expected Delivery on 
+        </div>
+        <p>Qty: 1</p>
+        <p style="display:inline;">No cost EMI Available</p>
+    </div>
+    <div class="web"><br> Delivery Expected on </div>
+    <div class=web><br> Staus: </div>
+    </div>
+{% endfor %}
+{% endblock %}
