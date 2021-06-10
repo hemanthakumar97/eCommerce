@@ -42,7 +42,7 @@ dask==2.5.2
 decorator==4.4.0
 defusedxml==0.6.0
 distributed==2.5.2
-Django==2.2
+Django==2.2.24
 django-crispy-forms==1.9.2
 django-jsonfield==1.4.0
 django-picklefield==3.0.1
